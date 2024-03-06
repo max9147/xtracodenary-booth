@@ -2,7 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
-public class AboutUsContentController : MonoBehaviour
+public class TeamContentController : MonoBehaviour
 {
     [SerializeField] private Transform _mainCamera;
     [SerializeField] private TextMeshPro _mainText;
