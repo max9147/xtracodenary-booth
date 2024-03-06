@@ -30,9 +30,7 @@ public class CameraController : MonoBehaviour
         }
         else
         {
-            _posXSelection = Mathf.Lerp(_posXSelection, (Input.mousePosition.x / Screen.width * 2f - 1f) * 0.2f, 0.01f);
-            _posYSelection = Mathf.Lerp(_posYSelection, (Input.mousePosition.y / Screen.height * 2f - 1f) * 0.2f, 0.01f);
-            _selectionCameras[_selectedArea].transform.localPosition = new Vector3(_posXSelection, _posYSelection, 0f);
+            MoveInsideCamera();
 
             if (Input.GetKeyDown(KeyCode.Escape))
                 UnselectArea();
@@ -47,7 +45,9 @@ public class CameraController : MonoBehaviour
 
     private void MoveInsideCamera()
     {
-
+        _posXSelection = Mathf.Lerp(_posXSelection, (Input.mousePosition.x / Screen.width * 2f - 1f) * 0.2f, 0.01f);
+        _posYSelection = Mathf.Lerp(_posYSelection, (Input.mousePosition.y / Screen.height * 2f - 1f) * 0.2f, 0.01f);
+        _selectionCameras[_selectedArea].transform.localPosition = new Vector3(_posXSelection, _posYSelection, 0f);
     }
 
     private void CheckSelection()
