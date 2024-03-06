@@ -6,10 +6,13 @@ public class CameraController : MonoBehaviour
     [SerializeField] private Camera _mainCamera;
     [SerializeField] private CinemachineVirtualCamera _cameraOutside;
     [SerializeField] private CinemachineVirtualCamera[] _selectionCameras;
+    [SerializeField] private GameObject[] _selectionContents;
     [SerializeField] private Transform[] _selectionPoints;
     [SerializeField] private QuickOutline[] _selectionOutlines;
 
     private float _posX;
+    private float _posXSelection;
+    private float _posYSelection;
     private int _selectedArea;
 
     private void Awake()
@@ -25,14 +28,26 @@ public class CameraController : MonoBehaviour
             CheckHover();
             CheckSelection();
         }
-        else if (Input.GetKeyDown(KeyCode.Escape))
-            UnselectArea();
+        else
+        {
+            _posXSelection = Mathf.Lerp(_posXSelection, (Input.mousePosition.x / Screen.width * 2f - 1f) * 0.2f, 0.01f);
+            _posYSelection = Mathf.Lerp(_posYSelection, (Input.mousePosition.y / Screen.height * 2f - 1f) * 0.2f, 0.01f);
+            _selectionCameras[_selectedArea].transform.localPosition = new Vector3(_posXSelection, _posYSelection, 0f);
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+                UnselectArea();
+        }
     }
 
     private void MoveOutsideCamera()
     {
         _posX = Mathf.Lerp(_posX, (Input.mousePosition.x / Screen.width * 2f - 1f) * -50f, 0.01f);
         _cameraOutside.GetCinemachineComponent<CinemachineOrbitalTransposer>().m_XAxis.Value = _posX;
+    }
+
+    private void MoveInsideCamera()
+    {
+
     }
 
     private void CheckSelection()
@@ -68,6 +83,7 @@ public class CameraController : MonoBehaviour
     {
         _selectedArea = _selectionID;
         _selectionCameras[_selectedArea].Priority = 2;
+        _selectionContents[_selectedArea].SetActive(true);
 
         for (int i = 0; i < _selectionPoints.Length; i++)
             _selectionOutlines[i].enabled = false;
@@ -76,6 +92,7 @@ public class CameraController : MonoBehaviour
     private void UnselectArea()
     {
         _selectionCameras[_selectedArea].Priority = 0;
+        _selectionContents[_selectedArea].SetActive(false);
         _selectedArea = -1;
     }
 }
