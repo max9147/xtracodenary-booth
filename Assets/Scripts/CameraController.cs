@@ -1,23 +1,29 @@
 using Cinemachine;
+using System;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    public event Action<int> StartHover;
+    public event Action<int> StopHover;
+    public event Action<int> SelectArea;
+    public event Action<int> UnselectArea;
+
     [SerializeField] private Camera _mainCamera;
     [SerializeField] private CinemachineVirtualCamera _cameraOutside;
     [SerializeField] private CinemachineVirtualCamera[] _selectionCameras;
-    [SerializeField] private GameObject[] _selectionContents;
     [SerializeField] private Transform[] _selectionPoints;
-    [SerializeField] private QuickOutline[] _selectionOutlines;
 
     private float _posX;
     private float _posXSelection;
     private float _posYSelection;
     private int _selectedArea;
+    private int _hoveredArea;
 
     private void Awake()
     {
         _selectedArea = -1;
+        _hoveredArea = -1;
     }
 
     private void Update()
@@ -33,7 +39,7 @@ public class CameraController : MonoBehaviour
             MoveInsideCamera();
 
             if (Input.GetKeyDown(KeyCode.Escape))
-                UnselectArea();
+                UnselectingArea();
         }
     }
 
@@ -56,10 +62,10 @@ public class CameraController : MonoBehaviour
         {
             if (Physics.Raycast(_mainCamera.ScreenPointToRay(Input.mousePosition), out RaycastHit _hit))
             {
-                for (int i = 0; i < _selectionPoints.Length; i++)
+                for (int _currentPoint = 0; _currentPoint < _selectionPoints.Length; _currentPoint++)
                 {
-                    if (_selectionPoints[i] == _hit.transform)
-                        SelectArea(i);
+                    if (_selectionPoints[_currentPoint] == _hit.transform)
+                        SelectingArea(_currentPoint);
                 }
             }
         }
@@ -69,30 +75,39 @@ public class CameraController : MonoBehaviour
     {
         if (Physics.Raycast(_mainCamera.ScreenPointToRay(Input.mousePosition), out RaycastHit _hit))
         {
-            for (int i = 0; i < _selectionPoints.Length; i++)
-                _selectionOutlines[i].enabled = _selectionPoints[i] == _hit.transform;
+            for (int _currentPoint = 0; _currentPoint < _selectionPoints.Length; _currentPoint++)
+            {
+                if (_selectionPoints[_currentPoint] == _hit.transform && _hoveredArea != _currentPoint)
+                {
+                    if (_hoveredArea > -1)
+                        StopHover?.Invoke(_hoveredArea);
+
+                    _hoveredArea = _currentPoint;
+                    StartHover?.Invoke(_hoveredArea);
+                }
+            }
         }
-        else
+        else if (_hoveredArea > -1)
         {
-            for (int i = 0; i < _selectionPoints.Length; i++)
-                _selectionOutlines[i].enabled = false;
+            StopHover?.Invoke(_hoveredArea);
+            _hoveredArea = -1;
         }
     }
 
-    private void SelectArea(int _selectionID)
+    private void SelectingArea(int _selectionID)
     {
         _selectedArea = _selectionID;
         _selectionCameras[_selectedArea].Priority = 2;
-        _selectionContents[_selectedArea].SetActive(true);
+        SelectArea?.Invoke(_selectedArea);
 
-        for (int i = 0; i < _selectionPoints.Length; i++)
-            _selectionOutlines[i].enabled = false;
+        StopHover?.Invoke(_hoveredArea);
+        _hoveredArea = -1;
     }
 
-    private void UnselectArea()
+    private void UnselectingArea()
     {
         _selectionCameras[_selectedArea].Priority = 0;
-        _selectionContents[_selectedArea].SetActive(false);
+        UnselectArea?.Invoke(_selectedArea);
         _selectedArea = -1;
     }
 }

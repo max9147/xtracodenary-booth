@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 116550022}
   - component: {fileID: 116550023}
   m_Layer: 0
-  m_Name: SelectionCameraAboutUs
+  m_Name: SelectionCameraRightTable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -707,59 +707,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 275650694}
   m_Mesh: {fileID: -7354422843775379518, guid: 85621d66dc3b61343987949776c27917, type: 3}
---- !u!1 &301697569
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 301697570}
-  - component: {fileID: 301697571}
-  m_Layer: 0
-  m_Name: SelectionPointRightScreen
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &301697570
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 301697569}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.000000021855694, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0, z: 0.2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 9069349305467165547}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &301697571
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 301697569}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 2.2, y: 2.2, z: 0.4}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1391,12 +1338,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 516617621}
-  m_LocalRotation: {x: 0, y: -0.70710677, z: -0.70710677, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 1.4}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0.7071068, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1.4000001}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1465075453}
+  m_Father: {fileID: 1196826010418823659}
   m_LocalEulerAnglesHint: {x: -90, y: -90, z: -90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1423,9 +1370,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: We are an events technology company that encourages you to dream, to bring
-    out those extraordinary thoughts which you had labelled ridiculous and through
-    creativity and ingenuity we will make them a reality.
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 809063dd13536a84083d192a08b099e6, type: 2}
   m_sharedMaterial: {fileID: -4768765529962028240, guid: 809063dd13536a84083d192a08b099e6,
@@ -1453,7 +1398,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 200
+  m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1665,7 +1610,7 @@ GameObject:
   m_Component:
   - component: {fileID: 569521984}
   m_Layer: 0
-  m_Name: SelectionCameraAboutUsParent
+  m_Name: SelectionCameraRightTableParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1795,12 +1740,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 590341721}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: -0.7071068, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 1.4}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0.7071068, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1.4000001}
+  m_LocalScale: {x: 0.010000001, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1861628425}
+  m_Father: {fileID: 7200602335842714679}
   m_LocalEulerAnglesHint: {x: -90, y: -90, z: -90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1827,10 +1772,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Our team embodies excellence in every facet, from conceptualization to
-    execution. Our unparalleled dedication, boundless creativity, and technical prowess
-    set us apart, consistently delivering extraordinary experiences that redefine
-    industry standards.
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 809063dd13536a84083d192a08b099e6, type: 2}
   m_sharedMaterial: {fileID: -4768765529962028240, guid: 809063dd13536a84083d192a08b099e6,
@@ -1858,7 +1800,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 192
+  m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2608,59 +2550,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &863606100
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 863606101}
-  - component: {fileID: 863606102}
-  m_Layer: 0
-  m_Name: SelectionPointLeftScreen
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &863606101
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 863606100}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.000000021855694, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0, z: 0.2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4431852504177026936}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &863606102
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 863606100}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 2.2, y: 2.2, z: 0.4}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &891154784
 GameObject:
   m_ObjectHideFlags: 0
@@ -2744,37 +2633,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 891154784}
   m_Mesh: {fileID: 2344031751578970564, guid: 85621d66dc3b61343987949776c27917, type: 3}
---- !u!1 &948545651
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 948545652}
-  m_Layer: 0
-  m_Name: MainScreenContent
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &948545652
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 948545651}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8227072909560969374}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &959974236
 GameObject:
   m_ObjectHideFlags: 0
@@ -3159,24 +3017,12 @@ MonoBehaviour:
   - {fileID: 116550023}
   - {fileID: 230209556}
   - {fileID: 1680201406}
-  _selectionContents:
-  - {fileID: 948545651}
-  - {fileID: 1861628424}
-  - {fileID: 1465075452}
-  - {fileID: 1826521449}
-  - {fileID: 1353479963}
   _selectionPoints:
-  - {fileID: 1946914994}
-  - {fileID: 1161049645}
-  - {fileID: 1156807793}
-  - {fileID: 863606101}
-  - {fileID: 301697570}
-  _selectionOutlines:
-  - {fileID: 8227072909560969375}
-  - {fileID: 8278669670494217349}
-  - {fileID: 5489636745344247982}
-  - {fileID: 6153085588050282375}
-  - {fileID: 9069349305467165548}
+  - {fileID: 8227072909560969374}
+  - {fileID: 7200602335842714679}
+  - {fileID: 1196826010418823659}
+  - {fileID: 4431852504177026936}
+  - {fileID: 9069349305467165547}
 --- !u!1 &1119299929
 GameObject:
   m_ObjectHideFlags: 0
@@ -3260,112 +3106,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1119299929}
   m_Mesh: {fileID: -1809968159960863475, guid: 85621d66dc3b61343987949776c27917, type: 3}
---- !u!1 &1156807792
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1156807793}
-  - component: {fileID: 1156807794}
-  m_Layer: 0
-  m_Name: SelectionPointAboutUs
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1156807793
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1156807792}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.3, y: 0.05, z: 0.45}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1196826010418823659}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1156807794
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1156807792}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.2, y: 0.9, z: 0.4}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &1161049644
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1161049645}
-  - component: {fileID: 1161049646}
-  m_Layer: 0
-  m_Name: SelectionPointTeam
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1161049645
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1161049644}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.30000004, y: 0.05, z: 0.45}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7200602335842714679}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1161049646
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1161049644}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.2, y: 0.9, z: 0.4}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1180130187
 GameObject:
   m_ObjectHideFlags: 0
@@ -3795,87 +3535,6 @@ MonoBehaviour:
   m_LegacyHeightOffset: 3.4028235e+38
   m_LegacyHeadingBias: 3.4028235e+38
   m_HeadingIsSlave: 0
---- !u!1 &1353479963
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1353479964}
-  m_Layer: 0
-  m_Name: RightScreenContent
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1353479964
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1353479963}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 9069349305467165547}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1465075452
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1465075453}
-  - component: {fileID: 1465075454}
-  m_Layer: 0
-  m_Name: AboutUsContent
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1465075453
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1465075452}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 516617622}
-  m_Father: {fileID: 1196826010418823659}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1465075454
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1465075452}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f0d188fa67f10d44bf13d240f17d8f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _mainCamera: {fileID: 330585546}
-  _mainText: {fileID: 516617623}
-  _mainTextString: We are an events technology company that encourages you to dream,
-    to bring out those extraordinary thoughts which you had labelled ridiculous and
-    through creativity and ingenuity we will make them a reality.
 --- !u!1 &1563391462
 GameObject:
   m_ObjectHideFlags: 3
@@ -3932,7 +3591,7 @@ GameObject:
   - component: {fileID: 1600117426}
   - component: {fileID: 1600117425}
   m_Layer: 0
-  m_Name: TeamText
+  m_Name: LeftTableText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4102,7 +3761,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1601204645}
   m_Layer: 0
-  m_Name: SelectionCameraTeamParent
+  m_Name: SelectionCameraLeftTableParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4528,88 +4187,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1815157369}
   m_Mesh: {fileID: 5233137679469888287, guid: 85621d66dc3b61343987949776c27917, type: 3}
---- !u!1 &1826521449
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1826521450}
-  m_Layer: 0
-  m_Name: LeftScreenContent
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1826521450
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1826521449}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4431852504177026936}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1861628424
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1861628425}
-  - component: {fileID: 1861628426}
-  m_Layer: 0
-  m_Name: TeamContent
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1861628425
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1861628424}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 590341722}
-  m_Father: {fileID: 7200602335842714679}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1861628426
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1861628424}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f922e4fbd27c0f44ac7114d050aa294, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _mainCamera: {fileID: 330585546}
-  _mainText: {fileID: 590341723}
-  _mainTextString: Our team embodies excellence in every facet, from conceptualization
-    to execution. Our unparalleled dedication, boundless creativity, and technical
-    prowess set us apart, consistently delivering extraordinary experiences that
-    redefine industry standards.
 --- !u!1 &1900994278
 GameObject:
   m_ObjectHideFlags: 0
@@ -4693,59 +4270,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1900994278}
   m_Mesh: {fileID: -5582907464801121761, guid: 85621d66dc3b61343987949776c27917, type: 3}
---- !u!1 &1946914993
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1946914994}
-  - component: {fileID: 1946914995}
-  m_Layer: 0
-  m_Name: SelectionPointMainScreen
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1946914994
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1946914993}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 1.3500001}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8227072909560969374}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1946914995
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1946914993}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 3.5, y: 2.7, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1961371312
 GameObject:
   m_ObjectHideFlags: 0
@@ -4873,7 +4397,7 @@ GameObject:
   - component: {fileID: 2017396204}
   - component: {fileID: 2017396203}
   m_Layer: 0
-  m_Name: AboutUsText
+  m_Name: RightTableText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5210,7 +4734,7 @@ GameObject:
   - component: {fileID: 2100371430}
   - component: {fileID: 2100371431}
   m_Layer: 0
-  m_Name: SelectionCameraTeam
+  m_Name: SelectionCameraLeftTable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6328,10 +5852,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1156807793}
   - {fileID: 569521984}
   - {fileID: 2017396202}
-  - {fileID: 1465075453}
+  - {fileID: 516617622}
   m_Father: {fileID: 5109677653503909973}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1228402097288602433
@@ -8422,9 +7945,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 863606101}
   - {fileID: 1990843410}
-  - {fileID: 1826521450}
   m_Father: {fileID: 5109677653503909973}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4441007713508445958
@@ -8612,7 +8133,9 @@ GameObject:
   - component: {fileID: 8227072909560969374}
   - component: {fileID: 1805539795800440012}
   - component: {fileID: 6311124062023656995}
+  - component: {fileID: 8227072909560969377}
   - component: {fileID: 8227072909560969375}
+  - component: {fileID: 8227072909560969376}
   m_Layer: 0
   m_Name: MainScreenSelection
   m_TagString: Untagged
@@ -8930,9 +8453,11 @@ GameObject:
   - component: {fileID: 1196826010418823659}
   - component: {fileID: 3323608126699983502}
   - component: {fileID: 3950037429156583969}
+  - component: {fileID: 5489636745344247984}
   - component: {fileID: 5489636745344247982}
+  - component: {fileID: 5489636745344247983}
   m_Layer: 0
-  m_Name: AboutUsSelection
+  m_Name: RightTableSelection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8952,10 +8477,49 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 1
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 10
+  outlineWidth: 0
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &5489636745344247983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5489636745344247981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f0d188fa67f10d44bf13d240f17d8f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cameraController: {fileID: 1056201022}
+  _mainText: {fileID: 516617623}
+  _mainCamera: {fileID: 330585546}
+  _mainTextString: We are an events technology company that encourages you to dream,
+    to bring out those extraordinary thoughts which you had labelled ridiculous and
+    through creativity and ingenuity we will make them a reality.
+--- !u!65 &5489636745344247984
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5489636745344247981}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.1999999, y: 0.4, z: 0.9}
+  m_Center: {x: -0.3, y: 0.05, z: 0.45}
 --- !u!23 &5541648523820822273
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9531,7 +9095,9 @@ GameObject:
   - component: {fileID: 4431852504177026936}
   - component: {fileID: 2515624405670721040}
   - component: {fileID: 5541648523820822273}
+  - component: {fileID: 6153085588050282376}
   - component: {fileID: 6153085588050282375}
+  - component: {fileID: 6153085588050282377}
   m_Layer: 0
   m_Name: LeftScreenSelection
   m_TagString: Untagged
@@ -9553,10 +9119,44 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 1
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 10
+  outlineWidth: 0
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!65 &6153085588050282376
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6153085588050282374}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.1999998, y: 2.2, z: 0.4}
+  m_Center: {x: 0.5, y: 0, z: 0.2}
+--- !u!114 &6153085588050282377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6153085588050282374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fdcc28391a3cdc42934ec024004a3f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cameraController: {fileID: 1056201022}
 --- !u!1 &6186721012123703989
 GameObject:
   m_ObjectHideFlags: 0
@@ -10370,10 +9970,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1161049645}
   - {fileID: 1601204645}
   - {fileID: 1600117424}
-  - {fileID: 1861628425}
+  - {fileID: 590341722}
   m_Father: {fileID: 5109677653503909973}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7267513949193298621
@@ -10539,7 +10138,9 @@ GameObject:
   - component: {fileID: 9069349305467165547}
   - component: {fileID: 3832337949507436607}
   - component: {fileID: 2837792342476191424}
+  - component: {fileID: 9069349305467165549}
   - component: {fileID: 9069349305467165548}
+  - component: {fileID: 9069349305467165550}
   m_Layer: 0
   m_Name: RightScreenSelection
   m_TagString: Untagged
@@ -11065,9 +10666,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1946914994}
   - {fileID: 469937303}
-  - {fileID: 948545652}
   m_Father: {fileID: 5109677653503909973}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8227072909560969375
@@ -11084,10 +10683,44 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 1
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 10
+  outlineWidth: 0
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &8227072909560969376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4772493673402032861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f684c2c2a0bf5e4c89b708cb9f82d50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cameraController: {fileID: 1056201022}
+--- !u!65 &8227072909560969377
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4772493673402032861}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.5, y: 1.0000002, z: 2.7}
+  m_Center: {x: 0, y: 0, z: 1.3500004}
 --- !u!33 &8247069313673981275
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -11107,9 +10740,11 @@ GameObject:
   - component: {fileID: 7200602335842714679}
   - component: {fileID: 6593627930654584052}
   - component: {fileID: 7443078172410419595}
+  - component: {fileID: 8278669670494217351}
   - component: {fileID: 8278669670494217349}
+  - component: {fileID: 8278669670494217350}
   m_Layer: 0
-  m_Name: TeamSelection
+  m_Name: LeftTableSelection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11129,10 +10764,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 1
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 10
+  outlineWidth: 0
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &8278669670494217350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8278669670494217348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f922e4fbd27c0f44ac7114d050aa294, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cameraController: {fileID: 1056201022}
+  _mainText: {fileID: 590341723}
+  _mainCamera: {fileID: 330585546}
+  _mainTextString: Our team embodies excellence in every facet, from conceptualization
+    to execution. Our unparalleled dedication, boundless creativity, and technical
+    prowess set us apart, consistently delivering extraordinary experiences that
+    redefine industry standards.
+--- !u!65 &8278669670494217351
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8278669670494217348}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.1999999, y: 0.4, z: 0.9}
+  m_Center: {x: -0.3, y: 0.05, z: 0.45}
 --- !u!1 &8282623465361790426
 GameObject:
   m_ObjectHideFlags: 0
@@ -11955,9 +11630,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 301697570}
   - {fileID: 567695642}
-  - {fileID: 1353479964}
   m_Father: {fileID: 5109677653503909973}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9069349305467165548
@@ -11974,10 +11647,44 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 1
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 10
+  outlineWidth: 0
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!65 &9069349305467165549
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7598909641985077571}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.1999998, y: 2.2, z: 0.4}
+  m_Center: {x: 0.5, y: 0, z: 0.2}
+--- !u!114 &9069349305467165550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7598909641985077571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e7b710263e0f694482c11578bdfd276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cameraController: {fileID: 1056201022}
 --- !u!23 &9075942652063885407
 MeshRenderer:
   m_ObjectHideFlags: 0
