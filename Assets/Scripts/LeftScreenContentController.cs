@@ -8,7 +8,8 @@ public class LeftScreenContentController : MonoBehaviour
 
     [SerializeField] private CameraController _cameraController;
 
-    private Coroutine _outlineCoroutine;
+    private Coroutine _startingHoverCoroutine;
+    private Coroutine _stoppingHoverCoroutine;
     private QuickOutline _quickOutline;
 
     private void Awake()
@@ -36,10 +37,9 @@ public class LeftScreenContentController : MonoBehaviour
     {
         if (_currentPoint == ID)
         {
-            if (_outlineCoroutine != null)
-                StopCoroutine(_outlineCoroutine);
-            _quickOutline.enabled = true;
-            DOTween.To(() => _quickOutline.OutlineWidth, x => _quickOutline.OutlineWidth = x, 10f, 0.5f);
+            if (_stoppingHoverCoroutine != null)
+                StopCoroutine(_stoppingHoverCoroutine);
+            _startingHoverCoroutine = StartCoroutine(StartingHover());
         }
     }
 
@@ -47,8 +47,9 @@ public class LeftScreenContentController : MonoBehaviour
     {
         if (_currentPoint == ID)
         {
-            DOTween.To(() => _quickOutline.OutlineWidth, x => _quickOutline.OutlineWidth = x, 0f, 0.5f);
-            _outlineCoroutine = StartCoroutine(DisablingOutline());
+            if (_startingHoverCoroutine != null)
+                StopCoroutine(_startingHoverCoroutine);
+            _stoppingHoverCoroutine = StartCoroutine(StoppingHover());
         }
     }
 
@@ -68,8 +69,18 @@ public class LeftScreenContentController : MonoBehaviour
         }
     }
 
-    private IEnumerator DisablingOutline()
+    private IEnumerator StartingHover()
     {
+        _quickOutline.enabled = true;
+        DOTween.To(() => _quickOutline.OutlineWidth, x => _quickOutline.OutlineWidth = x, 10f, 0.5f);
+
+        yield return new WaitForSeconds(0.5f);
+    }
+
+    private IEnumerator StoppingHover()
+    {
+        DOTween.To(() => _quickOutline.OutlineWidth, x => _quickOutline.OutlineWidth = x, 0f, 0.5f);
+
         yield return new WaitForSeconds(0.5f);
 
         _quickOutline.enabled = false;

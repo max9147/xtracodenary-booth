@@ -8494,6 +8494,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameraController: {fileID: 1056201022}
+  _rightTableText: {fileID: 2017396203}
   _mainText: {fileID: 516617623}
   _mainCamera: {fileID: 330585546}
   _mainTextString: We are an events technology company that encourages you to dream,
@@ -10781,6 +10782,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameraController: {fileID: 1056201022}
+  _leftTableText: {fileID: 1600117425}
   _mainText: {fileID: 590341723}
   _mainCamera: {fileID: 330585546}
   _mainTextString: Our team embodies excellence in every facet, from conceptualization
