@@ -1,5 +1,6 @@
 using DG.Tweening;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class MainScreenContentConroller : MonoBehaviour
@@ -7,6 +8,7 @@ public class MainScreenContentConroller : MonoBehaviour
     private const int ID = 0;
 
     [SerializeField] private CameraController _cameraController;
+    [SerializeField] private TextMeshPro _mainScreenText;
 
     private Coroutine _startingHoverCoroutine;
     private Coroutine _stoppingHoverCoroutine;
@@ -74,12 +76,16 @@ public class MainScreenContentConroller : MonoBehaviour
         _quickOutline.enabled = true;
         DOTween.To(() => _quickOutline.OutlineWidth, x => _quickOutline.OutlineWidth = x, 10f, 0.5f);
 
+        _mainScreenText.DOColor(Color.white, 0.5f);
+
         yield return new WaitForSeconds(0.5f);
     }
 
     private IEnumerator StoppingHover()
     {
         DOTween.To(() => _quickOutline.OutlineWidth, x => _quickOutline.OutlineWidth = x, 0f, 0.5f);
+
+        _mainScreenText.DOColor(new Color(1f, 1f, 1f, 0f), 0.5f);
 
         yield return new WaitForSeconds(0.5f);
 
