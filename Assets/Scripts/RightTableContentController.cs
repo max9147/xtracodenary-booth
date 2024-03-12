@@ -69,7 +69,7 @@ public class RightTableContentController : MonoBehaviour
         if (_currentPoint == ID)
         {
             StopAllCoroutines();
-            StartCoroutine(TypingText());
+            StartCoroutine(SelectingArea());
         }
     }
 
@@ -78,7 +78,7 @@ public class RightTableContentController : MonoBehaviour
         if (_currentPoint == ID)
         {
             StopAllCoroutines();
-            StartCoroutine(HidingText());
+            StartCoroutine(UnselectingArea());
         }
     }
 
@@ -103,7 +103,7 @@ public class RightTableContentController : MonoBehaviour
         _quickOutline.enabled = false;
     }
 
-    private IEnumerator TypingText()
+    private IEnumerator SelectingArea()
     {
         yield return new WaitForSeconds(1f);
 
@@ -115,7 +115,7 @@ public class RightTableContentController : MonoBehaviour
         }
     }
 
-    private IEnumerator HidingText()
+    private IEnumerator UnselectingArea()
     {
         while (_mainText.text.Length > 0)
         {
