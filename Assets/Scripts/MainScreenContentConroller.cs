@@ -12,6 +12,7 @@ public class MainScreenContentConroller : MonoBehaviour
     [SerializeField] private CameraController _cameraController;
     [SerializeField] private GameObject _selectionCanvasLeft;
     [SerializeField] private GameObject _selectionCanvasRight;
+    [SerializeField] private Image[] _selecitonOutlines;
     [SerializeField] private RawImage _video;
     [SerializeField] private RenderTexture[] _videoTextures;
     [SerializeField] private TextMeshPro _mainScreenText;
@@ -29,6 +30,7 @@ public class MainScreenContentConroller : MonoBehaviour
         _quickOutline = GetComponent<QuickOutline>();
         _canChangeVideo = true;
         _currentVideo = 0;
+        _selecitonOutlines[_currentVideo].color = Color.green;
     }
 
     private void OnEnable()
@@ -159,6 +161,7 @@ public class MainScreenContentConroller : MonoBehaviour
     private IEnumerator ChangingVideo(int _videoID)
     {
         _video.DOColor(new Color(1f, 1f, 1f, 0f), 0.2f);
+        _selecitonOutlines[_currentVideo].DOColor(Color.white, 0.2f);
 
         yield return new WaitForSeconds(0.2f);
 
@@ -170,6 +173,7 @@ public class MainScreenContentConroller : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
 
         _video.DOColor(Color.white, 0.2f);
+        _selecitonOutlines[_currentVideo].DOColor(Color.green, 0.2f);
 
         yield return new WaitForSeconds(0.2f);
 
