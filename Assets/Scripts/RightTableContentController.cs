@@ -2,17 +2,22 @@ using DG.Tweening;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RightTableContentController : MonoBehaviour
 {
     private const int ID = 2;
 
     [SerializeField] private CameraController _cameraController;
+    [SerializeField] private Image _textBackground;
+    [SerializeField] private Image[] _textBackgroundLogos;
     [SerializeField] private TextMeshPro _rightTableText;
-    [SerializeField] private TextMeshPro _mainText;
+    [SerializeField] private TextMeshProUGUI _mainText;
     [SerializeField] private Transform _mainCamera;
+    [SerializeField] private Transform _textCanvas;
 
-    [SerializeField] private string _mainTextString;
+    [SerializeField] private Color _backgroundColor;
+    [SerializeField] private Color _backgroundLogoColor;
 
     private Coroutine _startingHoverCoroutine;
     private Coroutine _stoppingHoverCoroutine;
@@ -41,7 +46,7 @@ public class RightTableContentController : MonoBehaviour
 
     private void Update()
     {
-        _mainText.transform.LookAt(_mainText.transform.position * 2f - _mainCamera.position);
+        _textCanvas.transform.LookAt(_mainText.transform.position * 2f - _mainCamera.position);
     }
 
     private void StartHover(int _currentPoint)
@@ -107,7 +112,13 @@ public class RightTableContentController : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
 
-        foreach (char _character in _mainTextString)
+        _textBackground.DOColor(_backgroundColor, 0.5f);
+        foreach (var _bakcgroundLogo in _textBackgroundLogos)
+            _bakcgroundLogo.DOColor(_backgroundLogoColor, 0.5f);
+
+        yield return new WaitForSeconds(0.5f);
+
+        foreach (char _character in "We are an events\ntechnology company that\nencourages you to dream,\nto bring out those\nextraordinary thoughts\nwhich you had labelled\nridiculous and through\ncreativity and ingenuity we\nwill make them a reality.")
         {
             _mainText.text += _character;
 
@@ -117,11 +128,16 @@ public class RightTableContentController : MonoBehaviour
 
     private IEnumerator UnselectingArea()
     {
-        while (_mainText.text.Length > 0)
-        {
-            _mainText.text = _mainText.text.Substring(0, _mainText.text.Length - 1);
+        yield return new WaitForSeconds(0.5f);
 
-            yield return new WaitForSeconds(0.005f);
-        }
+        _textBackground.DOColor(new Color(_backgroundColor.r, _backgroundColor.g, _backgroundColor.b, 0f), 0.5f);
+        foreach (var _bakcgroundLogo in _textBackgroundLogos)
+            _bakcgroundLogo.DOColor(Color.clear, 0.5f);
+        _mainText.DOColor(new Color(1, 1, 1, 0f), 0.5f);
+
+        yield return new WaitForSeconds(0.5f);
+
+        _mainText.text = string.Empty;
+        _mainText.color = Color.white;
     }
 }
