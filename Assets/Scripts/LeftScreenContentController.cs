@@ -1,8 +1,11 @@
 using DG.Tweening;
+using Microsoft.CognitiveServices.Speech;
 using OpenAI;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Threading;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,17 +19,27 @@ public class LeftScreenContentController : MonoBehaviour
     [SerializeField] private TextMeshPro _leftScreenText;
     [SerializeField] private TMP_InputField _promptInput;
 
+    private AudioSource _audioSource;
     private Coroutine _startingHoverCoroutine;
     private Coroutine _stoppingHoverCoroutine;
     private List<ChatMessage> _chatMessages;
     private OpenAIApi _openAIApi;
+    private SpeechConfig _speechConfig;
+    private SpeechSynthesizer _synthesizer;
     private QuickOutline _quickOutline;
+
+    private bool _audioSourceNeedStop;
+    private object _threadLocker;
 
     private void Awake()
     {
+        _audioSource = GetComponent<AudioSource>();
         _chatMessages = new List<ChatMessage>();
         _openAIApi = new OpenAIApi();
         _quickOutline = GetComponent<QuickOutline>();
+
+        _audioSourceNeedStop = false;
+        _threadLocker = new object();
 
         string _setupMessage =
             "Xtracodenary is a company, established in 2022 in Dubai. It provides tech solutions for events, like AR, VR, AI, motion games using kinect, various photo and video booths.\n" +
@@ -55,6 +68,21 @@ public class LeftScreenContentController : MonoBehaviour
         _cameraController.StopHover -= StopHover;
         _cameraController.SelectArea -= SelectArea;
         _cameraController.UnselectArea -= UnselectArea;
+
+        if (_synthesizer != null)
+            _synthesizer.Dispose();
+    }
+
+    private void Update()
+    {
+        lock (_threadLocker)
+        {
+            if (_audioSourceNeedStop)
+            {
+                _audioSource.Stop();
+                _audioSourceNeedStop = false;
+            }
+        }
     }
 
     public void AskPrompt()
@@ -117,9 +145,65 @@ public class LeftScreenContentController : MonoBehaviour
 
         string _message = Regex.Replace(_response.Choices[0].Message.Content.Trim(), @"\p{Cs}", "");
 
-        Debug.LogError(_message);
+        ReadMessage(_message);
 
         _promptButton.interactable = true;
+    }
+
+    private void ReadMessage(string _messageText)
+    {
+        _speechConfig = SpeechConfig.FromSubscription("0e35198c03b24ffbad54471e194d28b0", "uaenorth");
+        _speechConfig.SpeechSynthesisVoiceName = "en-US-BrandonNeural";
+        _synthesizer = new SpeechSynthesizer(_speechConfig, null);
+        _speechConfig.SetSpeechSynthesisOutputFormat(SpeechSynthesisOutputFormat.Raw24Khz16BitMonoPcm);
+
+        _synthesizer.SynthesisCanceled += (s, e) =>
+        {
+            var _cancellation = SpeechSynthesisCancellationDetails.FromResult(e.Result);
+        };
+
+        var _startTime = DateTime.Now;
+
+        using (var _result = _synthesizer.StartSpeakingTextAsync(_messageText).Result)
+        {
+            var _audioDataStream = AudioDataStream.FromResult(_result);
+            var _isFirstAudioChunk = true;
+            var _audioClip = AudioClip.Create(
+                "Speech",
+                24000 * 600,
+                1,
+                24000,
+                true,
+                (float[] _audioChunk) =>
+                {
+                    var _chunkSize = _audioChunk.Length;
+                    var _audioChunkBytes = new byte[_chunkSize * 2];
+                    var _readBytes = _audioDataStream.ReadData(_audioChunkBytes);
+                    if (_isFirstAudioChunk && _readBytes > 0)
+                    {
+                        var _endTime = DateTime.Now;
+                        var _latency = _endTime.Subtract(_startTime).TotalMilliseconds;
+                        _isFirstAudioChunk = false;
+                    }
+
+                    for (int i = 0; i < _chunkSize; ++i)
+                    {
+                        if (i < _readBytes / 2)
+                            _audioChunk[i] = (short)(_audioChunkBytes[i * 2 + 1] << 8 | _audioChunkBytes[i * 2]) / 32768.0F;
+                        else
+                            _audioChunk[i] = 0.0f;
+                    }
+
+                    if (_readBytes == 0)
+                    {
+                        Thread.Sleep(200);
+                        _audioSourceNeedStop = true;
+                    }
+                });
+
+            _audioSource.clip = _audioClip;
+            _audioSource.Play();
+        }
     }
 
     private IEnumerator StartingHover()
