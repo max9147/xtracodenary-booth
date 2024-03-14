@@ -3,13 +3,18 @@ using OpenAI;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LeftScreenContentController : MonoBehaviour
 {
     private const int ID = 3;
 
+    [SerializeField] private Button _promptButton;
     [SerializeField] private CameraController _cameraController;
+    [SerializeField] private TextMeshPro _leftScreenText;
+    [SerializeField] private TMP_InputField _promptInput;
 
     private Coroutine _startingHoverCoroutine;
     private Coroutine _stoppingHoverCoroutine;
@@ -52,6 +57,14 @@ public class LeftScreenContentController : MonoBehaviour
         _cameraController.UnselectArea -= UnselectArea;
     }
 
+    public void AskPrompt()
+    {
+        if (_promptInput.text == string.Empty)
+            return;
+
+        SendChatRequest(_promptInput.text);
+    }
+
     private void StartHover(int _currentPoint)
     {
         if (_currentPoint == ID)
@@ -90,6 +103,9 @@ public class LeftScreenContentController : MonoBehaviour
 
     private async void SendChatRequest(string _prompt)
     {
+        _promptButton.interactable = false;
+        _promptInput.text = string.Empty;
+
         _chatMessages.Add(new ChatMessage() { Content = _prompt, Role = "user" });
 
         var _response = await _openAIApi.CreateChatCompletion(new CreateChatCompletionRequest() { Model = "gpt-3.5-turbo", Messages = _chatMessages });
@@ -100,6 +116,10 @@ public class LeftScreenContentController : MonoBehaviour
         _chatMessages.Add(_response.Choices[0].Message);
 
         string _message = Regex.Replace(_response.Choices[0].Message.Content.Trim(), @"\p{Cs}", "");
+
+        Debug.LogError(_message);
+
+        _promptButton.interactable = true;
     }
 
     private IEnumerator StartingHover()
@@ -107,12 +127,18 @@ public class LeftScreenContentController : MonoBehaviour
         _quickOutline.enabled = true;
         DOTween.To(() => _quickOutline.OutlineWidth, x => _quickOutline.OutlineWidth = x, 10f, 0.5f);
 
+        _leftScreenText.DOColor(Color.white, 0.5f);
+        DOTween.To(() => _leftScreenText.fontMaterial.GetFloat(ShaderUtilities.ID_GlowPower), x => _leftScreenText.fontMaterial.SetFloat(ShaderUtilities.ID_GlowPower, x), 1f, 0.5f);
+
         yield return new WaitForSeconds(0.5f);
     }
 
     private IEnumerator StoppingHover()
     {
         DOTween.To(() => _quickOutline.OutlineWidth, x => _quickOutline.OutlineWidth = x, 0f, 0.5f);
+
+        _leftScreenText.DOColor(new Color(1f, 1f, 1f, 0f), 0.5f);
+        DOTween.To(() => _leftScreenText.fontMaterial.GetFloat(ShaderUtilities.ID_GlowPower), x => _leftScreenText.fontMaterial.SetFloat(ShaderUtilities.ID_GlowPower, x), 0f, 0.5f);
 
         yield return new WaitForSeconds(0.5f);
 
