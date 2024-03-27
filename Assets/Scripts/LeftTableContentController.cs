@@ -128,8 +128,6 @@ public class LeftTableContentController : MonoBehaviour
 
     private IEnumerator UnselectingArea()
     {
-        yield return new WaitForSeconds(0.5f);
-
         _textBackground.DOColor(new Color(_backgroundColor.r, _backgroundColor.g, _backgroundColor.b, 0f), 0.5f);
         foreach (var _bakcgroundLogo in _textBackgroundLogos)
             _bakcgroundLogo.DOColor(Color.clear, 0.5f);

@@ -14,9 +14,15 @@ public class LeftScreenContentController : MonoBehaviour
 {
     private const int ID = 3;
 
-    [SerializeField] private Button _promptButton;
+    [SerializeField] private Button _askButton;
     [SerializeField] private CameraController _cameraController;
+    [SerializeField] private Image _askButtonImage;
+    [SerializeField] private Image _promptInputImage;
+    [SerializeField] private RawImage _AIHostFeed;
     [SerializeField] private TextMeshPro _leftScreenText;
+    [SerializeField] private TextMeshProUGUI _promptInputPlaceholder;
+    [SerializeField] private TextMeshProUGUI _promptInputText;
+    [SerializeField] private TextMeshProUGUI _askButtonText;
     [SerializeField] private TMP_InputField _promptInput;
 
     private AudioSource _audioSource;
@@ -117,7 +123,8 @@ public class LeftScreenContentController : MonoBehaviour
     {
         if (_currentPoint == ID)
         {
-
+            StopAllCoroutines();
+            StartCoroutine(SelectingArea());
         }
     }
 
@@ -125,13 +132,14 @@ public class LeftScreenContentController : MonoBehaviour
     {
         if (_currentPoint == ID)
         {
-
+            StopAllCoroutines();
+            StartCoroutine(UnselectingArea());
         }
     }
 
     private async void SendChatRequest(string _prompt)
     {
-        _promptButton.interactable = false;
+        _askButton.interactable = false;
         _promptInput.text = string.Empty;
 
         _chatMessages.Add(new ChatMessage() { Content = _prompt, Role = "user" });
@@ -147,13 +155,13 @@ public class LeftScreenContentController : MonoBehaviour
 
         ReadMessage(_message);
 
-        _promptButton.interactable = true;
+        _askButton.interactable = true;
     }
 
     private void ReadMessage(string _messageText)
     {
         _speechConfig = SpeechConfig.FromSubscription("0e35198c03b24ffbad54471e194d28b0", "uaenorth");
-        _speechConfig.SpeechSynthesisVoiceName = "en-US-BrandonNeural";
+        _speechConfig.SpeechSynthesisVoiceName = "en-US-JennyNeural";
         _synthesizer = new SpeechSynthesizer(_speechConfig, null);
         _speechConfig.SetSpeechSynthesisOutputFormat(SpeechSynthesisOutputFormat.Raw24Khz16BitMonoPcm);
 
@@ -227,5 +235,31 @@ public class LeftScreenContentController : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         _quickOutline.enabled = false;
+    }
+
+    private IEnumerator SelectingArea()
+    {
+        yield return new WaitForSeconds(1f);
+
+        _askButtonImage.DOColor(Color.white, 0.5f);
+        _promptInputImage.DOColor(Color.white, 0.5f);
+        _AIHostFeed.DOColor(Color.white, 0.5f);
+        _promptInputPlaceholder.DOColor(Color.black, 0.5f);
+        _promptInputText.DOColor(Color.black, 0.5f);
+        _askButtonText.DOColor(Color.black, 0.5f);
+    }
+
+    private IEnumerator UnselectingArea()
+    {
+        _askButtonImage.DOColor(new Color(1f, 1f, 1f, 0f), 0.5f);
+        _promptInputImage.DOColor(new Color(1f, 1f, 1f, 0f), 0.5f);
+        _AIHostFeed.DOColor(new Color(1f, 1f, 1f, 0f), 0.5f);
+        _promptInputPlaceholder.DOColor(Color.clear, 0.5f);
+        _promptInputText.DOColor(Color.clear, 0.5f);
+        _askButtonText.DOColor(Color.clear, 0.5f);
+
+        yield return new WaitForSeconds(0.5f);
+
+        _promptInput.text = string.Empty;
     }
 }
