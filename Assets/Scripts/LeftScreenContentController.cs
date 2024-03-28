@@ -34,6 +34,7 @@ public class LeftScreenContentController : MonoBehaviour
     private SpeechSynthesizer _synthesizer;
     private QuickOutline _quickOutline;
 
+    private bool _firstOpen;
     private bool _audioSourceNeedStop;
     private object _threadLocker;
 
@@ -44,6 +45,7 @@ public class LeftScreenContentController : MonoBehaviour
         _openAIApi = new OpenAIApi();
         _quickOutline = GetComponent<QuickOutline>();
 
+        _firstOpen = true;
         _audioSourceNeedStop = false;
         _threadLocker = new object();
 
@@ -247,6 +249,12 @@ public class LeftScreenContentController : MonoBehaviour
         _promptInputPlaceholder.DOColor(Color.black, 0.5f);
         _promptInputText.DOColor(Color.black, 0.5f);
         _askButtonText.DOColor(Color.black, 0.5f);
+
+        if(_firstOpen)
+        {
+            _firstOpen = false;
+            ReadMessage("Welcome, please feel free to ask any question about our company!");
+        }
     }
 
     private IEnumerator UnselectingArea()
