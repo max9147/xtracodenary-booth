@@ -32,10 +32,6 @@ public class LeftTableContentController : MonoBehaviour
         _cameraController.StoppedHover += StopHover;
         _cameraController.SelectedArea += SelectArea;
         _cameraController.UnselectedArea += UnselectArea;
-
-        _descriptionText.SetActive(true);
-        foreach (var _teamText in _teamTexts)
-            _teamText.SetActive(false);
     }
 
     private void OnDisable()
@@ -81,7 +77,13 @@ public class LeftTableContentController : MonoBehaviour
     private void SelectArea(int _currentPoint)
     {
         if (_currentPoint == ID)
+        {
             _leftTableCanvas.SetActive(true);
+
+            _descriptionText.SetActive(true);
+            foreach (var _teamText in _teamTexts)
+                _teamText.SetActive(false);
+        }
     }
 
     private void UnselectArea(int _currentPoint)
