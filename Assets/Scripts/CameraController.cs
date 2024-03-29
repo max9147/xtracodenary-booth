@@ -1,19 +1,22 @@
 using Cinemachine;
+using DG.Tweening;
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public event Action<int> StartHover;
-    public event Action<int> StopHover;
-    public event Action<int> SelectArea;
-    public event Action<int> UnselectArea;
+    public event Action<int> StartedHover;
+    public event Action<int> StoppedHover;
+    public event Action<int> SelectedArea;
+    public event Action<int> UnselectedArea;
 
     [SerializeField] private Camera _mainCamera;
     [SerializeField] private CinemachineVirtualCamera _cameraOutside;
     [SerializeField] private CinemachineVirtualCamera[] _selectionCameras;
     [SerializeField] private Transform[] _selectionPoints;
 
+    private bool _blockRotation;
     private float _posX;
     private float _posXSelection;
     private float _posYSelection;
@@ -22,6 +25,7 @@ public class CameraController : MonoBehaviour
 
     private void Awake()
     {
+        _blockRotation = false;
         _selectedArea = -1;
         _hoveredArea = -1;
     }
@@ -39,21 +43,27 @@ public class CameraController : MonoBehaviour
             MoveInsideCamera();
 
             if (Input.GetKeyDown(KeyCode.Escape))
-                UnselectingArea();
+                StartCoroutine(UnselectingArea());
         }
     }
 
     private void MoveOutsideCamera()
     {
-        _posX = Mathf.Lerp(_posX, (Input.mousePosition.x / Screen.width * 2f - 1f) * -50f, 0.01f);
-        _cameraOutside.GetCinemachineComponent<CinemachineOrbitalTransposer>().m_XAxis.Value = _posX;
+        if (!_blockRotation)
+        {
+            _posX = Mathf.Lerp(_posX, (Input.mousePosition.x / Screen.width * 2f - 1f) * -50f, 0.01f);
+            _cameraOutside.GetCinemachineComponent<CinemachineOrbitalTransposer>().m_XAxis.Value = _posX;
+        }
     }
 
     private void MoveInsideCamera()
     {
-        _posXSelection = Mathf.Lerp(_posXSelection, (Input.mousePosition.x / Screen.width * 2f - 1f) * 0.2f, 0.01f);
-        _posYSelection = Mathf.Lerp(_posYSelection, (Input.mousePosition.y / Screen.height * 2f - 1f) * 0.2f, 0.01f);
-        _selectionCameras[_selectedArea].transform.localPosition = new Vector3(_posXSelection, _posYSelection, 0f);
+        if (!_blockRotation)
+        {
+            _posXSelection = Mathf.Lerp(_posXSelection, (Input.mousePosition.x / Screen.width * 2f - 1f) * 0.2f, 0.01f);
+            _posYSelection = Mathf.Lerp(_posYSelection, (Input.mousePosition.y / Screen.height * 2f - 1f) * 0.2f, 0.01f);
+            _selectionCameras[_selectedArea].transform.localPosition = new Vector3(_posXSelection, _posYSelection, 0f);
+        }
     }
 
     private void CheckSelection()
@@ -80,16 +90,16 @@ public class CameraController : MonoBehaviour
                 if (_selectionPoints[_currentPoint] == _hit.transform && _hoveredArea != _currentPoint)
                 {
                     if (_hoveredArea > -1)
-                        StopHover?.Invoke(_hoveredArea);
+                        StoppedHover?.Invoke(_hoveredArea);
 
                     _hoveredArea = _currentPoint;
-                    StartHover?.Invoke(_hoveredArea);
+                    StartedHover?.Invoke(_hoveredArea);
                 }
             }
         }
         else if (_hoveredArea > -1)
         {
-            StopHover?.Invoke(_hoveredArea);
+            StoppedHover?.Invoke(_hoveredArea);
             _hoveredArea = -1;
         }
     }
@@ -97,17 +107,35 @@ public class CameraController : MonoBehaviour
     private void SelectingArea(int _selectionID)
     {
         _selectedArea = _selectionID;
-        _selectionCameras[_selectedArea].Priority = 2;
-        SelectArea?.Invoke(_selectedArea);
 
-        StopHover?.Invoke(_hoveredArea);
+        if (_selectedArea == 1 || _selectedArea == 2)
+        {
+            _blockRotation = true;
+            DOTween.To(() => _cameraOutside.GetCinemachineComponent<CinemachineOrbitalTransposer>().m_XAxis.Value, x => _cameraOutside.GetCinemachineComponent<CinemachineOrbitalTransposer>().m_XAxis.Value = x, _selectedArea == 1 ? 180f : -180f, 2f).SetEase(Ease.InOutSine);
+        }
+        else
+            _selectionCameras[_selectedArea].Priority = 2;
+        SelectedArea?.Invoke(_selectedArea);
+
+        StoppedHover?.Invoke(_hoveredArea);
         _hoveredArea = -1;
     }
 
-    private void UnselectingArea()
+    private IEnumerator UnselectingArea()
     {
-        _selectionCameras[_selectedArea].Priority = 0;
-        UnselectArea?.Invoke(_selectedArea);
+        if (_selectedArea == 1 || _selectedArea == 2)
+        {
+            DOTween.To(() => _cameraOutside.GetCinemachineComponent<CinemachineOrbitalTransposer>().m_XAxis.Value, x => _cameraOutside.GetCinemachineComponent<CinemachineOrbitalTransposer>().m_XAxis.Value = x, 0f, 2f).SetEase(Ease.InOutSine);
+
+            yield return new WaitForSeconds(2f);
+
+            _blockRotation = false;
+            _posX = 0;
+        }
+        else
+            _selectionCameras[_selectedArea].Priority = 0;
+
+        UnselectedArea?.Invoke(_selectedArea);
         _selectedArea = -1;
     }
 }

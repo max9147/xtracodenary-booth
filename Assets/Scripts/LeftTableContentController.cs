@@ -2,22 +2,15 @@ using DG.Tweening;
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class LeftTableContentController : MonoBehaviour
 {
     private const int ID = 1;
 
     [SerializeField] private CameraController _cameraController;
-    [SerializeField] private Image _textBackground;
-    [SerializeField] private Image[] _textBackgroundLogos;
+    [SerializeField] private GameObject _leftTableCanvas;
     [SerializeField] private TextMeshPro _leftTableText;
-    [SerializeField] private TextMeshProUGUI _mainText;
     [SerializeField] private Transform _mainCamera;
-    [SerializeField] private Transform _textCanvas;
-
-    [SerializeField] private Color _backgroundColor;
-    [SerializeField] private Color _backgroundLogoColor;
 
     private Coroutine _startingHoverCoroutine;
     private Coroutine _stoppingHoverCoroutine;
@@ -30,23 +23,18 @@ public class LeftTableContentController : MonoBehaviour
 
     private void OnEnable()
     {
-        _cameraController.StartHover += StartHover;
-        _cameraController.StopHover += StopHover;
-        _cameraController.SelectArea += SelectArea;
-        _cameraController.UnselectArea += UnselectArea;
+        _cameraController.StartedHover += StartHover;
+        _cameraController.StoppedHover += StopHover;
+        _cameraController.SelectedArea += SelectArea;
+        _cameraController.UnselectedArea += UnselectArea;
     }
 
     private void OnDisable()
     {
-        _cameraController.StartHover -= StartHover;
-        _cameraController.StopHover -= StopHover;
-        _cameraController.SelectArea -= SelectArea;
-        _cameraController.UnselectArea -= UnselectArea;
-    }
-
-    private void Update()
-    {
-        _textCanvas.LookAt(_textCanvas.transform.position * 2f - _mainCamera.position);
+        _cameraController.StartedHover -= StartHover;
+        _cameraController.StoppedHover -= StopHover;
+        _cameraController.SelectedArea -= SelectArea;
+        _cameraController.UnselectedArea -= UnselectArea;
     }
 
     private void StartHover(int _currentPoint)
@@ -72,19 +60,13 @@ public class LeftTableContentController : MonoBehaviour
     private void SelectArea(int _currentPoint)
     {
         if (_currentPoint == ID)
-        {
-            StopAllCoroutines();
-            StartCoroutine(SelectingArea());
-        }
+            _leftTableCanvas.SetActive(true);
     }
 
     private void UnselectArea(int _currentPoint)
     {
         if (_currentPoint == ID)
-        {
-            StopAllCoroutines();
-            StartCoroutine(UnselectingArea());
-        }
+            _leftTableCanvas.SetActive(false);
     }
 
     private IEnumerator StartingHover()
@@ -106,36 +88,5 @@ public class LeftTableContentController : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         _quickOutline.enabled = false;
-    }
-
-    private IEnumerator SelectingArea()
-    {
-        yield return new WaitForSeconds(1f);
-
-        _textBackground.DOColor(_backgroundColor, 0.5f);
-        foreach (var _bakcgroundLogo in _textBackgroundLogos)
-            _bakcgroundLogo.DOColor(_backgroundLogoColor, 0.5f);
-
-        yield return new WaitForSeconds(0.5f);
-
-        foreach (char _character in "Our team embodies\nexcellence in every facet,\nfrom conceptualization to\nexecution. Our\nunparalleled dedication,\nboundless creativity, and\ntechnical prowess set us\napart, consistently\ndelivering extraordinary\nexperiences that redefine\nindustry standards.")
-        {
-            _mainText.text += _character;
-
-            yield return new WaitForSeconds(0.05f);
-        }
-    }
-
-    private IEnumerator UnselectingArea()
-    {
-        _textBackground.DOColor(new Color(_backgroundColor.r, _backgroundColor.g, _backgroundColor.b, 0f), 0.5f);
-        foreach (var _bakcgroundLogo in _textBackgroundLogos)
-            _bakcgroundLogo.DOColor(Color.clear, 0.5f);
-        _mainText.DOColor(new Color(1, 1, 1, 0f), 0.5f);
-
-        yield return new WaitForSeconds(0.5f);
-
-        _mainText.text = string.Empty;
-        _mainText.color = Color.white;
     }
 }

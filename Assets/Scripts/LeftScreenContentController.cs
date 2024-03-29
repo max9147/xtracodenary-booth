@@ -64,18 +64,18 @@ public class LeftScreenContentController : MonoBehaviour
 
     private void OnEnable()
     {
-        _cameraController.StartHover += StartHover;
-        _cameraController.StopHover += StopHover;
-        _cameraController.SelectArea += SelectArea;
-        _cameraController.UnselectArea += UnselectArea;
+        _cameraController.StartedHover += StartHover;
+        _cameraController.StoppedHover += StopHover;
+        _cameraController.SelectedArea += SelectArea;
+        _cameraController.UnselectedArea += UnselectArea;
     }
 
     private void OnDisable()
     {
-        _cameraController.StartHover -= StartHover;
-        _cameraController.StopHover -= StopHover;
-        _cameraController.SelectArea -= SelectArea;
-        _cameraController.UnselectArea -= UnselectArea;
+        _cameraController.StartedHover -= StartHover;
+        _cameraController.StoppedHover -= StopHover;
+        _cameraController.SelectedArea -= SelectArea;
+        _cameraController.UnselectedArea -= UnselectArea;
 
         if (_synthesizer != null)
             _synthesizer.Dispose();
