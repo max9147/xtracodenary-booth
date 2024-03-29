@@ -9,6 +9,8 @@ public class LeftTableContentController : MonoBehaviour
 
     [SerializeField] private CameraController _cameraController;
     [SerializeField] private GameObject _leftTableCanvas;
+    [SerializeField] private GameObject _descriptionText;
+    [SerializeField] private GameObject[] _teamTexts;
     [SerializeField] private TextMeshPro _leftTableText;
     [SerializeField] private Transform _mainCamera;
 
@@ -16,9 +18,12 @@ public class LeftTableContentController : MonoBehaviour
     private Coroutine _stoppingHoverCoroutine;
     private QuickOutline _quickOutline;
 
+    private int _selectedID;
+
     private void Awake()
     {
         _quickOutline = GetComponent<QuickOutline>();
+        _selectedID = -1;
     }
 
     private void OnEnable()
@@ -27,6 +32,10 @@ public class LeftTableContentController : MonoBehaviour
         _cameraController.StoppedHover += StopHover;
         _cameraController.SelectedArea += SelectArea;
         _cameraController.UnselectedArea += UnselectArea;
+
+        _descriptionText.SetActive(true);
+        foreach (var _teamText in _teamTexts)
+            _teamText.SetActive(false);
     }
 
     private void OnDisable()
@@ -35,6 +44,18 @@ public class LeftTableContentController : MonoBehaviour
         _cameraController.StoppedHover -= StopHover;
         _cameraController.SelectedArea -= SelectArea;
         _cameraController.UnselectedArea -= UnselectArea;
+    }
+
+    public void SelectTeamMember(int _setSelectedID)
+    {
+        if (_selectedID != -1)
+            _teamTexts[_selectedID].SetActive(false);
+        else
+            _descriptionText.SetActive(false);
+
+        _selectedID = _setSelectedID;
+
+        _teamTexts[_selectedID].SetActive(true);
     }
 
     private void StartHover(int _currentPoint)
