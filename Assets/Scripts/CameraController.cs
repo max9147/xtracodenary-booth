@@ -2,6 +2,7 @@ using Cinemachine;
 using DG.Tweening;
 using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
@@ -11,9 +12,12 @@ public class CameraController : MonoBehaviour
     public event Action<int> SelectedArea;
     public event Action<int> UnselectedArea;
 
+    [SerializeField] private Color _blueColor;
+
     [SerializeField] private Camera _mainCamera;
     [SerializeField] private CinemachineVirtualCamera _cameraOutside;
     [SerializeField] private CinemachineVirtualCamera[] _selectionCameras;
+    [SerializeField] private TextMeshProUGUI[] _navigationTexts;
     [SerializeField] private Transform[] _selectionPoints;
 
     private bool _blockRotation;
@@ -45,6 +49,16 @@ public class CameraController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Escape))
                 StartCoroutine(UnselectingArea());
         }
+    }
+
+    public void SelectArea(int _selectionID)
+    {
+        if (_selectionID == _selectedArea)
+            StartCoroutine(UnselectingArea());
+        else if (_selectedArea != -1)
+            StartCoroutine(UnselectingArea(_selectionID));
+        else
+            SelectingArea(_selectionID);
     }
 
     private void MoveOutsideCamera()
@@ -108,6 +122,8 @@ public class CameraController : MonoBehaviour
     {
         _selectedArea = _selectionID;
 
+        _navigationTexts[_selectedArea].color = Color.white;
+
         if (_selectedArea == 1 || _selectedArea == 2)
         {
             _blockRotation = true;
@@ -121,7 +137,7 @@ public class CameraController : MonoBehaviour
         _hoveredArea = -1;
     }
 
-    private IEnumerator UnselectingArea()
+    private IEnumerator UnselectingArea(int _reselectID = -1)
     {
         if (_selectedArea == 1 || _selectedArea == 2)
         {
@@ -135,7 +151,15 @@ public class CameraController : MonoBehaviour
         else
             _selectionCameras[_selectedArea].Priority = 0;
 
+        _navigationTexts[_selectedArea].color = _blueColor;
+
         UnselectedArea?.Invoke(_selectedArea);
         _selectedArea = -1;
+
+        if (_reselectID != -1)
+        {
+            yield return new WaitForSeconds(1f);
+            SelectingArea(_reselectID);
+        }
     }
 }
