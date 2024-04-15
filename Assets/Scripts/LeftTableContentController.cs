@@ -2,15 +2,19 @@ using DG.Tweening;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LeftTableContentController : MonoBehaviour
 {
     private const int ID = 1;
 
     [SerializeField] private CameraController _cameraController;
+    [SerializeField] private Image[] _teamPhotos;
     [SerializeField] private GameObject _leftTableCanvas;
     [SerializeField] private GameObject _descriptionText;
     [SerializeField] private GameObject[] _teamTexts;
+    [SerializeField] private Sprite[] _teamSprites;
+    [SerializeField] private Sprite[] _teamSpritesBW;
     [SerializeField] private TextMeshPro _leftTableText;
     [SerializeField] private Transform _mainCamera;
 
@@ -51,6 +55,14 @@ public class LeftTableContentController : MonoBehaviour
 
         _selectedID = _setSelectedID;
 
+        for (int i = 0; i < _teamPhotos.Length; i++)
+        {
+            if (i == _selectedID)
+                _teamPhotos[i].sprite = _teamSprites[i];
+            else
+                _teamPhotos[i].sprite = _teamSpritesBW[i];
+        }
+
         _teamTexts[_selectedID].SetActive(true);
     }
 
@@ -80,9 +92,12 @@ public class LeftTableContentController : MonoBehaviour
         {
             _leftTableCanvas.SetActive(true);
 
+            _selectedID = -1;
             _descriptionText.SetActive(true);
             foreach (var _teamText in _teamTexts)
                 _teamText.SetActive(false);
+            for (int i = 0; i < _teamPhotos.Length; i++)
+                _teamPhotos[i].sprite = _teamSprites[i];
         }
     }
 
