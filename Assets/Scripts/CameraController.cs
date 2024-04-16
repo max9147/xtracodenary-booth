@@ -17,10 +17,13 @@ public class CameraController : MonoBehaviour
     [SerializeField] private Camera _mainCamera;
     [SerializeField] private CinemachineVirtualCamera _cameraOutside;
     [SerializeField] private CinemachineVirtualCamera[] _selectionCameras;
+    [SerializeField] private ParticleSystem[] _fireworks;
     [SerializeField] private TextMeshProUGUI[] _navigationTexts;
+    [SerializeField] private Transform _logo;
     [SerializeField] private Transform[] _selectionPoints;
 
     private bool _blockRotation;
+    private bool _canPlaySecret;
     private float _posX;
     private float _posXSelection;
     private float _posYSelection;
@@ -30,6 +33,7 @@ public class CameraController : MonoBehaviour
     private void Awake()
     {
         _blockRotation = false;
+        _canPlaySecret = true;
         _selectedArea = -1;
         _hoveredArea = -1;
     }
@@ -41,6 +45,7 @@ public class CameraController : MonoBehaviour
             MoveOutsideCamera();
             CheckHover();
             CheckSelection();
+            CheckLogoClick();
         }
         else
         {
@@ -95,6 +100,18 @@ public class CameraController : MonoBehaviour
         }
     }
 
+    private void CheckLogoClick()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (Physics.Raycast(_mainCamera.ScreenPointToRay(Input.mousePosition), out RaycastHit _hit))
+            {
+                if (_hit.transform == _logo)
+                    PlaySecret();
+            }
+        }
+    }
+
     private void CheckHover()
     {
         if (Physics.Raycast(_mainCamera.ScreenPointToRay(Input.mousePosition), out RaycastHit _hit))
@@ -135,6 +152,26 @@ public class CameraController : MonoBehaviour
 
         StoppedHover?.Invoke(_hoveredArea);
         _hoveredArea = -1;
+    }
+
+    private void PlaySecret()
+    {
+        if (!_canPlaySecret)
+            return;
+
+        _canPlaySecret = false;
+
+        StartCoroutine(RefreshSecret());
+
+        foreach (var _firework in _fireworks)
+            _firework.Play();
+    }
+
+    private IEnumerator RefreshSecret()
+    {
+        yield return new WaitForSeconds(10f);
+
+        _canPlaySecret = true;
     }
 
     private IEnumerator UnselectingArea(int _reselectID = -1)
