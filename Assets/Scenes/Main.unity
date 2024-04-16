@@ -69763,6 +69763,7 @@ GameObject:
   m_Component:
   - component: {fileID: 543450653649028590}
   - component: {fileID: 919132149104516949}
+  - component: {fileID: 919132149104516950}
   m_Layer: 0
   m_Name: Ch33_nonPBR
   m_TagString: Untagged
@@ -69791,6 +69792,102 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &919132149104516950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132149104516948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 776adaaacdc5c4e8ab0395120a6e972b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fixTransforms: 1
+  solver:
+    executedInEditor: 0
+    IKPosition: {x: -0.6399247, y: 1.6890799, z: 9.165707}
+    IKPositionWeight: 1
+    root: {fileID: 543450653649028590}
+    target: {fileID: 330585546}
+    spine:
+    - transform: {fileID: 3484119399097785378}
+      weight: 0
+      solverPosition: {x: 0, y: 0, z: 0}
+      solverRotation: {x: 0, y: 0, z: 0, w: 0}
+      defaultLocalPosition: {x: -0, y: 0.09694427, z: -0.011097324}
+      defaultLocalRotation: {x: -0.056956533, y: -0.000022242966, z: 0.0002504876,
+        w: 0.99837667}
+      length: 0
+      sqrMag: 0
+      axis: {x: 5.367172e-11, y: -0.113728546, z: 0.99351186}
+      baseForwardOffsetEuler: {x: 0, y: 0, z: 0}
+    - transform: {fileID: 6643931769867175172}
+      weight: 0
+      solverPosition: {x: 0, y: 0, z: 0}
+      solverRotation: {x: 0, y: 0, z: 0, w: 0}
+      defaultLocalPosition: {x: -0, y: 0.113840185, z: -1.0044498e-11}
+      defaultLocalRotation: {x: -6.938894e-18, y: -1.1993267e-13, z: 6.7284676e-13,
+        w: 1}
+      length: 0
+      sqrMag: 0
+      axis: {x: 5.367172e-11, y: -0.113728546, z: 0.99351186}
+      baseForwardOffsetEuler: {x: 0, y: 0, z: 0}
+    - transform: {fileID: 1194904597928109480}
+      weight: 0
+      solverPosition: {x: 0, y: 0, z: 0}
+      solverRotation: {x: 0, y: 0, z: 0, w: 0}
+      defaultLocalPosition: {x: -0, y: 0.1301033, z: 2.6652003e-10}
+      defaultLocalRotation: {x: -6.938894e-18, y: -0, z: 7.888609e-29, w: 1}
+      length: 0
+      sqrMag: 0
+      axis: {x: 5.367172e-11, y: -0.113728546, z: 0.99351186}
+      baseForwardOffsetEuler: {x: 0, y: 0, z: 0}
+    head:
+      transform: {fileID: 4829180875468216928}
+      weight: 1
+      solverPosition: {x: 0, y: 0, z: 0}
+      solverRotation: {x: 0, y: 0, z: 0, w: 1}
+      defaultLocalPosition: {x: -0, y: 0.0694429, z: 0.019824808}
+      defaultLocalRotation: {x: 0, y: -0, z: -1.3899324e-37, w: 1}
+      length: 0
+      sqrMag: 0
+      axis: {x: 5.27507e-11, y: -0.00000015787869, z: 1}
+      baseForwardOffsetEuler: {x: 0, y: 0, z: 0}
+    eyes: []
+    bodyWeight: 0.2
+    headWeight: 1
+    eyesWeight: 1
+    clampWeight: 0.5
+    clampWeightHead: 0.8
+    clampWeightEyes: 0.5
+    clampSmoothing: 2
+    spineWeightCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0.3
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    spineTargetOffset: {x: 0, y: 0, z: 0}
 --- !u!23 &925825341613508601
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -69929,6 +70026,7 @@ GameObject:
   m_Component:
   - component: {fileID: 497213050618679401}
   - component: {fileID: 5766393637238557203}
+  - component: {fileID: 5766393637238557204}
   m_Layer: 0
   m_Name: Ch27_nonPBR
   m_TagString: Untagged
@@ -85753,6 +85851,100 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5766393637238557204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985624273523624659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 776adaaacdc5c4e8ab0395120a6e972b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fixTransforms: 1
+  solver:
+    executedInEditor: 0
+    IKPosition: {x: -11.420004, y: 1.663234, z: 9.199493}
+    IKPositionWeight: 1
+    root: {fileID: 497213050618679401}
+    target: {fileID: 330585546}
+    spine:
+    - transform: {fileID: 7241842925629278107}
+      weight: 0
+      solverPosition: {x: 0, y: 0, z: 0}
+      solverRotation: {x: 0, y: 0, z: 0, w: 0}
+      defaultLocalPosition: {x: -0, y: 0.09589874, z: -0.0040370575}
+      defaultLocalRotation: {x: -0.021034567, y: 0, z: -0, w: 0.99977875}
+      length: 0
+      sqrMag: 0
+      axis: {x: 0, y: -0.042059824, z: 0.9991151}
+      baseForwardOffsetEuler: {x: 0, y: 0, z: 0}
+    - transform: {fileID: 1779190821063742885}
+      weight: 0
+      solverPosition: {x: 0, y: 0, z: 0}
+      solverRotation: {x: 0, y: 0, z: 0, w: 0}
+      defaultLocalPosition: {x: -0, y: 0.11198096, z: -9.959013e-11}
+      defaultLocalRotation: {x: 0, y: -0, z: -0, w: 1}
+      length: 0
+      sqrMag: 0
+      axis: {x: 0, y: -0.042059824, z: 0.9991151}
+      baseForwardOffsetEuler: {x: 0, y: 0, z: 0}
+    - transform: {fileID: 872865816364143469}
+      weight: 0
+      solverPosition: {x: 0, y: 0, z: 0}
+      solverRotation: {x: 0, y: 0, z: 0, w: 0}
+      defaultLocalPosition: {x: -0, y: 0.12797824, z: 5.812831e-11}
+      defaultLocalRotation: {x: 4.3646694e-26, y: -0, z: -0, w: 1}
+      length: 0
+      sqrMag: 0
+      axis: {x: 0, y: -0.042059824, z: 0.9991151}
+      baseForwardOffsetEuler: {x: 0, y: 0, z: 0}
+    head:
+      transform: {fileID: 2617697914729424798}
+      weight: 1
+      solverPosition: {x: 0, y: 0, z: 0}
+      solverRotation: {x: 0, y: 0, z: 0, w: 1}
+      defaultLocalPosition: {x: -0, y: 0.071815945, z: 0.022249216}
+      defaultLocalRotation: {x: 0, y: -0, z: -0, w: 1}
+      length: 0
+      sqrMag: 0
+      axis: {x: 0, y: 0.000000026077032, z: 1}
+      baseForwardOffsetEuler: {x: 0, y: 0, z: 0}
+    eyes: []
+    bodyWeight: 0.2
+    headWeight: 1
+    eyesWeight: 1
+    clampWeight: 0.5
+    clampWeightHead: 0.8
+    clampWeightEyes: 0.5
+    clampSmoothing: 2
+    spineWeightCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0.3
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    spineTargetOffset: {x: 0, y: 0, z: 0}
 --- !u!23 &5769977586956780731
 MeshRenderer:
   m_ObjectHideFlags: 0
