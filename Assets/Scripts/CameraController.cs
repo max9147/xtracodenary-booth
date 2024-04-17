@@ -66,6 +66,17 @@ public class CameraController : MonoBehaviour
             SelectingArea(_selectionID);
     }
 
+    public void UnselectArea(bool _playFireworks = false)
+    {
+        if (_playFireworks)
+        {
+            foreach (var _firework in _fireworks)
+                _firework.Play();
+        }
+
+        StartCoroutine(UnselectingArea());
+    }
+
     private void MoveOutsideCamera()
     {
         if (!_blockRotation)
@@ -193,6 +204,9 @@ public class CameraController : MonoBehaviour
             _navigationTexts[_selectedArea].color = _blueColor;
 
         UnselectedArea?.Invoke(_selectedArea);
+
+        yield return new WaitForSeconds(1f);
+
         _selectedArea = -1;
 
         if (_reselectID != -1)
