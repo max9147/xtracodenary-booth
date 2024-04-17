@@ -139,7 +139,8 @@ public class CameraController : MonoBehaviour
     {
         _selectedArea = _selectionID;
 
-        _navigationTexts[_selectedArea].color = Color.white;
+        if (_selectedArea < 5)
+            _navigationTexts[_selectedArea].color = Color.white;
 
         if (_selectedArea == 1 || _selectedArea == 2)
         {
@@ -188,14 +189,17 @@ public class CameraController : MonoBehaviour
         else
             _selectionCameras[_selectedArea].Priority = 0;
 
-        _navigationTexts[_selectedArea].color = _blueColor;
+        if (_selectedArea < 5)
+            _navigationTexts[_selectedArea].color = _blueColor;
 
         UnselectedArea?.Invoke(_selectedArea);
         _selectedArea = -1;
 
         if (_reselectID != -1)
         {
-            yield return new WaitForSeconds(1f);
+            if (_reselectID == 1 || _reselectID == 2)
+                yield return new WaitForSeconds(1f);
+
             SelectingArea(_reselectID);
         }
     }
