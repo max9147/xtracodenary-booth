@@ -57,6 +57,7 @@ public class CameraController : MonoBehaviour
             CheckSelection();
             CheckLogoClick();
             CheckLogoHover();
+            CheckStaffClick();
         }
         else
         {
@@ -130,6 +131,18 @@ public class CameraController : MonoBehaviour
             {
                 if (_hit.transform == _logo)
                     PlaySecret();
+            }
+        }
+    }
+
+    private void CheckStaffClick()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (Physics.Raycast(_mainCamera.ScreenPointToRay(Input.mousePosition), out RaycastHit _hit))
+            {
+                if (_hit.transform.CompareTag("Staff"))
+                    SelectingArea(3);
             }
         }
     }
