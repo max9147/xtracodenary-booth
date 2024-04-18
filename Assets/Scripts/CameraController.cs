@@ -18,12 +18,15 @@ public class CameraController : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera _cameraOutside;
     [SerializeField] private CinemachineVirtualCamera[] _selectionCameras;
     [SerializeField] private ParticleSystem[] _fireworks;
+    [SerializeField] private RectTransform _navigationBar;
     [SerializeField] private TextMeshProUGUI[] _navigationTexts;
+    [SerializeField] private TextMeshProUGUI _welcomeText;
     [SerializeField] private Transform _logo;
     [SerializeField] private Transform[] _selectionPoints;
 
     private bool _blockRotation;
     private bool _canPlaySecret;
+    private bool _playingIntro;
     private float _posX;
     private float _posXSelection;
     private float _posYSelection;
@@ -34,12 +37,18 @@ public class CameraController : MonoBehaviour
     {
         _blockRotation = false;
         _canPlaySecret = true;
+        _playingIntro = true;
         _selectedArea = -1;
         _hoveredArea = -1;
+
+        StartCoroutine(PlayIntro());
     }
 
     private void Update()
     {
+        if (_playingIntro)
+            return;
+
         if (_selectedArea == -1)
         {
             MoveOutsideCamera();
@@ -216,5 +225,22 @@ public class CameraController : MonoBehaviour
 
             SelectingArea(_reselectID);
         }
+    }
+
+    private IEnumerator PlayIntro()
+    {
+        _navigationBar.anchoredPosition = new Vector2(0f, _navigationBar.sizeDelta.y / 2f);
+        _welcomeText.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(4f);
+
+        _welcomeText.DOColor(new Color(1f, 1f, 1f, 0f), 1f);
+
+        yield return new WaitForSeconds(1f);
+
+        _welcomeText.gameObject.SetActive(false);
+        _navigationBar.DOAnchorPos(new Vector2(0f, _navigationBar.sizeDelta.y / -2f), 1f);
+
+        _playingIntro = false;
     }
 }
