@@ -12,6 +12,7 @@ public class MainScreenContentConroller : MonoBehaviour
     [SerializeField] private CameraController _cameraController;
     [SerializeField] private GameObject _selectionCanvasLeft;
     [SerializeField] private GameObject _selectionCanvasRight;
+    [SerializeField] private GameObject _youtubeCanvas;
     [SerializeField] private Image[] _selecitonOutlines;
     [SerializeField] private RawImage _video;
     [SerializeField] private RenderTexture[] _videoTextures;
@@ -97,6 +98,11 @@ public class MainScreenContentConroller : MonoBehaviour
         StartCoroutine(ChangingVideo(_videoID));
     }
 
+    public void OpenYoutube()
+    {
+        Application.OpenURL("https://www.youtube.com/@xtracodenary627/videos");
+    }
+
     private IEnumerator StartingHover()
     {
         _quickOutline.enabled = true;
@@ -126,12 +132,15 @@ public class MainScreenContentConroller : MonoBehaviour
 
         _selectionCanvasLeft.transform.localPosition = new Vector3(1f, 1f, 1.35f);
         _selectionCanvasRight.transform.localPosition = new Vector3(-1f, 1f, 1.35f);
+        _youtubeCanvas.transform.localPosition = new Vector3(0f, 1f, -0.35f);
 
         _selectionCanvasLeft.SetActive(true);
         _selectionCanvasRight.SetActive(true);
+        _youtubeCanvas.SetActive(true);
 
         _selectionCanvasLeft.transform.DOLocalMove(new Vector3(2.3f, -1f, 1.35f), 1f).SetEase(Ease.InOutSine);
         _selectionCanvasRight.transform.DOLocalMove(new Vector3(-2.3f, -1f, 1.35f), 1f).SetEase(Ease.InOutSine);
+        _youtubeCanvas.transform.DOLocalMove(new Vector3(-0f, -0.6f, -0.35f), 1f).SetEase(Ease.InOutSine);
 
         _video.texture = _videoTextures[_currentVideo];
         _videoPlayers[_currentVideo].Play();
@@ -147,6 +156,7 @@ public class MainScreenContentConroller : MonoBehaviour
 
         _selectionCanvasLeft.transform.DOLocalMove(new Vector3(1f, 1f, 1.35f), 1f).SetEase(Ease.InOutSine);
         _selectionCanvasRight.transform.DOLocalMove(new Vector3(-1f, 1f, 1.35f), 1f).SetEase(Ease.InOutSine);
+        _youtubeCanvas.transform.DOLocalMove(new Vector3(0f, 1f, -0.35f), 1f).SetEase(Ease.InOutSine);
 
         yield return new WaitForSeconds(0.5f);
 
@@ -156,6 +166,7 @@ public class MainScreenContentConroller : MonoBehaviour
 
         _selectionCanvasLeft.SetActive(false);
         _selectionCanvasRight.SetActive(false);
+        _youtubeCanvas.SetActive(false);
     }
 
     private IEnumerator ChangingVideo(int _videoID)
