@@ -17,6 +17,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private Camera _mainCamera;
     [SerializeField] private CinemachineVirtualCamera _cameraOutside;
     [SerializeField] private CinemachineVirtualCamera[] _selectionCameras;
+    [SerializeField] private GameObject _logoArrows;
     [SerializeField] private ParticleSystem[] _fireworks;
     [SerializeField] private RectTransform _navigationBar;
     [SerializeField] private TextMeshProUGUI[] _navigationTexts;
@@ -55,6 +56,7 @@ public class CameraController : MonoBehaviour
             CheckHover();
             CheckSelection();
             CheckLogoClick();
+            CheckLogoHover();
         }
         else
         {
@@ -155,6 +157,14 @@ public class CameraController : MonoBehaviour
         }
     }
 
+    private void CheckLogoHover()
+    {
+        if (Physics.Raycast(_mainCamera.ScreenPointToRay(Input.mousePosition), out RaycastHit _hit))
+            _logoArrows.SetActive(_hit.transform == _logo);
+        else
+            _logoArrows.SetActive(false);
+    }
+
     private void SelectingArea(int _selectionID)
     {
         _selectedArea = _selectionID;
@@ -190,7 +200,7 @@ public class CameraController : MonoBehaviour
 
     private IEnumerator RefreshSecret()
     {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(5f);
 
         _canPlaySecret = true;
     }
