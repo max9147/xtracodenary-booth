@@ -91,6 +91,14 @@ public class RightGameContentController : MonoBehaviour
         {
             _gameCanvas.SetActive(true);
 
+            for (int i = 0; i < _usedTiles.Length; i++)
+            {
+                _usedTiles[i] = false;
+                _tileLights[i].color = Color.black;
+                _tileLights[i].gameObject.SetActive(true);
+                _tileNumbers[i].color = Color.white;
+            }
+
             Invoke(nameof(ActivateTile), 1f);
         }
     }

@@ -30,7 +30,7 @@ public class LeftGameContentController : MonoBehaviour
     {
         _quickOutline = GetComponent<QuickOutline>();
 
-        _playerTurn = true;
+        _playerTurn = false;
         _hoveredTile = -1;
     }
 
@@ -90,7 +90,7 @@ public class LeftGameContentController : MonoBehaviour
 
                 if ((_crossTiles[0] && _crossTiles[1] && _crossTiles[2]) || (_crossTiles[3] && _crossTiles[4] && _crossTiles[5]) || (_crossTiles[6] && _crossTiles[7] && _crossTiles[8]) ||
                     (_crossTiles[0] && _crossTiles[3] && _crossTiles[6]) || (_crossTiles[1] && _crossTiles[4] && _crossTiles[7]) || (_crossTiles[2] && _crossTiles[5] && _crossTiles[8]) ||
-                    (_crossTiles[0] && _crossTiles[4] && _crossTiles[9]) || (_crossTiles[2] && _crossTiles[4] && _crossTiles[6]))
+                    (_crossTiles[0] && _crossTiles[4] && _crossTiles[8]) || (_crossTiles[2] && _crossTiles[4] && _crossTiles[6]))
                 {
                     _cameraController.UnselectArea(true);
                     return;
@@ -172,6 +172,8 @@ public class LeftGameContentController : MonoBehaviour
                 _imageTiles[i].sprite = null;
                 _imageTiles[i].gameObject.SetActive(false);
             }
+
+            Invoke(nameof(ActivatePlayer), 1f);
         }
     }
 
@@ -180,7 +182,14 @@ public class LeftGameContentController : MonoBehaviour
         if (_currentPoint == ID)
         {
             _gameCanvas.SetActive(false);
+
+            _playerTurn = false;
         }
+    }
+
+    private void ActivatePlayer()
+    {
+        _playerTurn = true;
     }
 
     private IEnumerator StartingHover()
