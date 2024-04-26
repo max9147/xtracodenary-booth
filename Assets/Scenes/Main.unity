@@ -3237,19 +3237,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Asad Idrees
-
-
-    Electrical Engineer
-
-
-    Focused and seasoned Electrical
-    Engineer with expertise in Integrated Renewable Energy, Power Electronics, and
-    Power Systems having core competencies in Electrical and Electronic Design. Adept
-    at fostering and sustaining a professional environment through team collaboration
-    and strong creative and critical thinking along with comprehensive command of
-    computer programming and development. Strongly knowledgeable in market trends,
-    complex operations direction, and oversight of large budgets and workforces.'
+  m_text: "Asad Idrees\n\nElectrical Engineer\n\n\"I lay the foundation and build
+    the intricate framework upon which the digital world thrives, ensuring that the
+    hardware and software seamlessly integrate and function\_harmoniously.\""
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 809063dd13536a84083d192a08b099e6, type: 2}
   m_sharedMaterial: {fileID: -4768765529962028240, guid: 809063dd13536a84083d192a08b099e6,
@@ -3277,8 +3267,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 100
-  m_fontSizeBase: 100
+  m_fontSize: 140
+  m_fontSizeBase: 140
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 20
@@ -13472,18 +13462,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Mohammad Omar
-
-
-    Events Manager
-
-
-    A dedicated professional with
-    several years of experience in travel & tourism industry. Adept at preparing
-    and processing sales reports to assess accuracy, completeness, and conformance
-    with company standards; maintains strong working relationships with key stakeholders
-    across multiple teams based on trust and rapport for excellent customer care
-    services and product knowledge expertise.'
+  m_text: "Mohammad Omar\n\nEvents Manager\n\n\"I orchestrate memorable experiences,
+    meticulously plan and coordinate every detail to ensure that our events unfold\_seamlessly.\""
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 809063dd13536a84083d192a08b099e6, type: 2}
   m_sharedMaterial: {fileID: -4768765529962028240, guid: 809063dd13536a84083d192a08b099e6,
@@ -13511,8 +13491,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 100
-  m_fontSizeBase: 100
+  m_fontSize: 140
+  m_fontSizeBase: 140
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 20
@@ -26678,13 +26658,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Maksim Chizh
-
-
-    Software Developer
-
-
-    just a guy'
+  m_text: "Maksim Chizh\n\nSoftware Developer\n\n\"I breathe life into our hardware,
+    infusing it with soul\_and\_purpose.\""
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 809063dd13536a84083d192a08b099e6, type: 2}
   m_sharedMaterial: {fileID: -4768765529962028240, guid: 809063dd13536a84083d192a08b099e6,
@@ -26712,8 +26687,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 100
-  m_fontSizeBase: 100
+  m_fontSize: 140
+  m_fontSizeBase: 140
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 20
@@ -73503,15 +73478,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Zanorashe Manzvera
-
-
-    CEO
-
-
-    Business Development Manager with experience
-    in diverse fields, who possesses the ability to identify, secure, retain high-quality
-    customers and also deliver value to them.'
+  m_text: "Zanorashe Manzvera\n\nCEO\n\n\"As the captain i set the course for the
+    entire ship, steering it toward success by charting strategic directions, fostering
+    growth, nurturing the team, and ensuring the organization operates smoothly and\_effectively.\""
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 809063dd13536a84083d192a08b099e6, type: 2}
   m_sharedMaterial: {fileID: -4768765529962028240, guid: 809063dd13536a84083d192a08b099e6,
@@ -73539,8 +73508,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 100
-  m_fontSizeBase: 100
+  m_fontSize: 140
+  m_fontSizeBase: 140
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 20
