@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CameraController : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera _cameraOutside;
     [SerializeField] private CinemachineVirtualCamera[] _selectionCameras;
     [SerializeField] private GameObject _logoArrows;
+    [SerializeField] private Image[] _navigationButtons;
     [SerializeField] private ParticleSystem[] _fireworks;
     [SerializeField] private RectTransform _navigationBar;
     [SerializeField] private TextMeshProUGUI[] _navigationTexts;
@@ -183,7 +185,10 @@ public class CameraController : MonoBehaviour
         _selectedArea = _selectionID;
 
         if (_selectedArea < 5)
+        {
             _navigationTexts[_selectedArea].color = Color.white;
+            _navigationButtons[_selectedArea].color = _blueColor;
+        }
 
         if (_selectedArea == 1 || _selectedArea == 2)
         {
@@ -233,7 +238,10 @@ public class CameraController : MonoBehaviour
             _selectionCameras[_selectedArea].Priority = 0;
 
         if (_selectedArea < 5)
+        {
             _navigationTexts[_selectedArea].color = _blueColor;
+            _navigationButtons[_selectedArea].color = Color.white;
+        }
 
         UnselectedArea?.Invoke(_selectedArea);
 
@@ -255,7 +263,7 @@ public class CameraController : MonoBehaviour
         _navigationBar.anchoredPosition = new Vector2(0f, _navigationBar.sizeDelta.y / 2f);
         _welcomeText.gameObject.SetActive(true);
 
-        foreach (char _character in "Hello, fly around our interactive website and\ndiscover many hidden gems!")
+        foreach (char _character in "Hello, fly around our interactive tech oasis\nand discover many hidden gems!")
         {
             _welcomeText.text += _character;
 
