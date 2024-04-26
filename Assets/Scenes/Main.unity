@@ -57869,7 +57869,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Hello, fly around our interactive website and discover many hidden gems!
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e69d565e2a1313342b094ac37e2d9e36, type: 2}
   m_sharedMaterial: {fileID: 604451493512198691, guid: e69d565e2a1313342b094ac37e2d9e36,

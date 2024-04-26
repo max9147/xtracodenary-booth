@@ -255,7 +255,14 @@ public class CameraController : MonoBehaviour
         _navigationBar.anchoredPosition = new Vector2(0f, _navigationBar.sizeDelta.y / 2f);
         _welcomeText.gameObject.SetActive(true);
 
-        yield return new WaitForSeconds(4f);
+        foreach (char _character in "Hello, fly around our interactive website and\ndiscover many hidden gems!")
+        {
+            _welcomeText.text += _character;
+
+            yield return new WaitForSeconds(0.05f);
+        }
+
+        yield return new WaitForSeconds(1f);
 
         _welcomeText.DOColor(new Color(1f, 1f, 1f, 0f), 1f);
 
