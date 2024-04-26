@@ -187,7 +187,7 @@ public class CameraController : MonoBehaviour
         if (_selectedArea < 5)
         {
             _navigationTexts[_selectedArea].color = Color.white;
-            _navigationButtons[_selectedArea].color = _blueColor;
+            _navigationButtons[_selectedArea].color = new Color(_blueColor.r, _blueColor.g, _blueColor.b, 0.7f);
         }
 
         if (_selectedArea == 1 || _selectedArea == 2)
@@ -240,7 +240,7 @@ public class CameraController : MonoBehaviour
         if (_selectedArea < 5)
         {
             _navigationTexts[_selectedArea].color = _blueColor;
-            _navigationButtons[_selectedArea].color = Color.white;
+            _navigationButtons[_selectedArea].color = new Color(1f, 1f, 1f, 0.7f);
         }
 
         UnselectedArea?.Invoke(_selectedArea);
