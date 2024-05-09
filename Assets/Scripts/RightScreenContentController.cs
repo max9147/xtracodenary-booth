@@ -12,6 +12,8 @@ public class RightScreenContentController : MonoBehaviour
     [SerializeField] private Image _tv1Image;
     [SerializeField] private Image _tv2Image;
     [SerializeField] private Image _tv3Image;
+    [SerializeField] private Image _linkButtonImage;
+    [SerializeField] private Image _linkButtonLogo;
     [SerializeField] private Sprite[] _slideshow1Sprites;
     [SerializeField] private Sprite[] _slideshow2Sprites;
     [SerializeField] private Sprite[] _slideshow3Sprites;
@@ -19,6 +21,7 @@ public class RightScreenContentController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _tv1Text;
     [SerializeField] private TextMeshProUGUI _tv2Text;
     [SerializeField] private TextMeshProUGUI _tv3Text;
+    [SerializeField] private TextMeshProUGUI _linkButtonText;
 
     [SerializeField] private string[] _slideshow1Names;
     [SerializeField] private string[] _slideshow2Names;
@@ -50,6 +53,11 @@ public class RightScreenContentController : MonoBehaviour
         _cameraController.StoppedHover -= StopHover;
         _cameraController.SelectedArea -= SelectArea;
         _cameraController.UnselectedArea -= UnselectArea;
+    }
+
+    public void OpenTechnology()
+    {
+        Application.OpenURL("https://xtracodenary.com/");
     }
 
     private void StartHover(int _currentPoint)
@@ -94,6 +102,10 @@ public class RightScreenContentController : MonoBehaviour
             _tv2Text.DOColor(new Color(1f, 1f, 1f, 0f), 0.5f);
             _tv3Image.DOColor(new Color(1f, 1f, 1f, 0f), 0.5f);
             _tv3Text.DOColor(new Color(1f, 1f, 1f, 0f), 0.5f);
+
+            _linkButtonImage.DOColor(new Color(1f, 0f, 0f, 0f), 0.5f);
+            _linkButtonLogo.DOColor(new Color(1f, 1f, 1f, 0f), 0.5f);
+            _linkButtonText.DOColor(new Color(1f, 1f, 1f, 0f), 0.5f);
         }
     }
 
@@ -123,6 +135,10 @@ public class RightScreenContentController : MonoBehaviour
     private IEnumerator ShowingSlides()
     {
         yield return new WaitForSeconds(1f);
+
+        _linkButtonImage.DOColor(Color.red, 0.5f);
+        _linkButtonLogo.DOColor(Color.white, 0.5f);
+        _linkButtonText.DOColor(Color.white, 0.5f);
 
         while (true)
         {
