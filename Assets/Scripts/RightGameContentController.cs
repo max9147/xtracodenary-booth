@@ -1,9 +1,6 @@
 using DG.Tweening;
 using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class RightGameContentController : MonoBehaviour
 {
@@ -11,23 +8,22 @@ public class RightGameContentController : MonoBehaviour
 
     [SerializeField] private Camera _mainCamera;
     [SerializeField] private CameraController _cameraController;
-    [SerializeField] private Image[] _tileLights;
     [SerializeField] private GameObject _gameCanvas;
-    [SerializeField] private TextMeshProUGUI[] _tileNumbers;
-    [SerializeField] private Transform[] _tileColliders;
+    [SerializeField] private RectTransform _player;
+    [SerializeField] private RectTransform _projectilePrefab;
+    [SerializeField] private RectTransform[] _enemies;
 
     private Coroutine _startingHoverCoroutine;
     private Coroutine _stoppingHoverCoroutine;
     private QuickOutline _quickOutline;
 
-    private bool[] _usedTiles = new bool[9] { false, false, false, false, false, false, false, false, false };
-    private int _activeTile;
+    private bool _isPlaying;
 
     private void Awake()
     {
         _quickOutline = GetComponent<QuickOutline>();
 
-        _activeTile = -1;
+        _isPlaying = false;
     }
 
     private void OnEnable()
@@ -48,20 +44,23 @@ public class RightGameContentController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (!_isPlaying)
+            return;
+
+        _player.anchoredPosition = new Vector2(Mathf.Clamp((Input.mousePosition.x - (Screen.width / 2)) / 2, -300f, 300f), -220f);
+
+        bool _hasWon = true;
+
+        foreach (var item in _enemies)
         {
-            if (Physics.Raycast(_mainCamera.ScreenPointToRay(Input.mousePosition), out RaycastHit _hit))
-            {
-                for (int _currentTile = 0; _currentTile < _tileColliders.Length; _currentTile++)
-                {
-                    if (_tileColliders[_currentTile] == _hit.transform && _activeTile > -1 && _activeTile == _currentTile)
-                    {
-                        _tileLights[_currentTile].gameObject.SetActive(false);
-                        _tileNumbers[_currentTile].color = Color.red;
-                        ActivateTile();
-                    }
-                }
-            }
+            if (item.gameObject.activeInHierarchy)
+                _hasWon = false;
+        }
+
+        if (_hasWon)
+        {
+            _isPlaying = false;
+            _cameraController.UnselectArea(true);
         }
     }
 
@@ -91,15 +90,14 @@ public class RightGameContentController : MonoBehaviour
         {
             _gameCanvas.SetActive(true);
 
-            for (int i = 0; i < _usedTiles.Length; i++)
+            foreach (var item in _enemies)
             {
-                _usedTiles[i] = false;
-                _tileLights[i].color = Color.black;
-                _tileLights[i].gameObject.SetActive(true);
-                _tileNumbers[i].color = Color.white;
+                item.gameObject.SetActive(true);
             }
 
-            Invoke(nameof(ActivateTile), 1f);
+            _isPlaying = true;
+
+            StartCoroutine(Shoot());
         }
     }
 
@@ -108,31 +106,9 @@ public class RightGameContentController : MonoBehaviour
         if (_currentPoint == ID)
         {
             _gameCanvas.SetActive(false);
+
+            _isPlaying = false;
         }
-    }
-
-    private void ActivateTile()
-    {
-        List<int> _availableTiles = new List<int>();
-
-        for (int i = 0; i < _usedTiles.Length; i++)
-        {
-            if (!_usedTiles[i])
-                _availableTiles.Add(i);
-        }
-
-        if (_availableTiles.Count == 0)
-        {
-            _cameraController.UnselectArea(true);
-            return;
-        }
-
-        int _selectedTile = _availableTiles[Random.Range(0, _availableTiles.Count)];
-        _activeTile = _selectedTile;
-
-        _usedTiles[_selectedTile] = true;
-
-        _tileLights[_selectedTile].DOColor(Color.red, 1f);
     }
 
     private IEnumerator StartingHover()
@@ -150,5 +126,17 @@ public class RightGameContentController : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         _quickOutline.enabled = false;
+    }
+
+    private IEnumerator Shoot()
+    {
+        while (_isPlaying)
+        {
+            yield return new WaitForSeconds(1f);
+
+            RectTransform _curProjectile = Instantiate(_projectilePrefab, _gameCanvas.transform);
+            _curProjectile.anchoredPosition = _player.anchoredPosition + new Vector2(0f, 20f);
+            _curProjectile.DOAnchorPos(new Vector2(_curProjectile.anchoredPosition.x, 240f), 1f).SetEase(Ease.Linear);
+        }
     }
 }
