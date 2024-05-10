@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +16,7 @@ public class LeftGameContentController : MonoBehaviour
     [SerializeField] private Sprite _cross;
     [SerializeField] private Sprite _crossOutline;
     [SerializeField] private Sprite _circle;
+    [SerializeField] private TextMeshPro _leftGameText;
     [SerializeField] private Transform[] _tileColliders;
 
     private Coroutine _startingHoverCoroutine;
@@ -197,12 +199,18 @@ public class LeftGameContentController : MonoBehaviour
         _quickOutline.enabled = true;
         DOTween.To(() => _quickOutline.OutlineWidth, x => _quickOutline.OutlineWidth = x, 10f, 0.5f);
 
+        _leftGameText.DOColor(Color.white, 0.5f);
+        DOTween.To(() => _leftGameText.fontMaterial.GetFloat(ShaderUtilities.ID_GlowPower), x => _leftGameText.fontMaterial.SetFloat(ShaderUtilities.ID_GlowPower, x), 1f, 0.5f);
+
         yield return new WaitForSeconds(0.5f);
     }
 
     private IEnumerator StoppingHover()
     {
         DOTween.To(() => _quickOutline.OutlineWidth, x => _quickOutline.OutlineWidth = x, 0f, 0.5f);
+
+        _leftGameText.DOColor(new Color(1f, 1f, 1f, 0f), 0.5f);
+        DOTween.To(() => _leftGameText.fontMaterial.GetFloat(ShaderUtilities.ID_GlowPower), x => _leftGameText.fontMaterial.SetFloat(ShaderUtilities.ID_GlowPower, x), 0f, 0.5f);
 
         yield return new WaitForSeconds(0.5f);
 

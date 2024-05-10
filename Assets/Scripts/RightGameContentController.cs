@@ -1,5 +1,6 @@
 using DG.Tweening;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class RightGameContentController : MonoBehaviour
@@ -12,6 +13,7 @@ public class RightGameContentController : MonoBehaviour
     [SerializeField] private RectTransform _player;
     [SerializeField] private RectTransform _projectilePrefab;
     [SerializeField] private RectTransform[] _enemies;
+    [SerializeField] private TextMeshPro _rightGameText;
 
     private Coroutine _startingHoverCoroutine;
     private Coroutine _stoppingHoverCoroutine;
@@ -116,12 +118,18 @@ public class RightGameContentController : MonoBehaviour
         _quickOutline.enabled = true;
         DOTween.To(() => _quickOutline.OutlineWidth, x => _quickOutline.OutlineWidth = x, 10f, 0.5f);
 
+        _rightGameText.DOColor(Color.white, 0.5f);
+        DOTween.To(() => _rightGameText.fontMaterial.GetFloat(ShaderUtilities.ID_GlowPower), x => _rightGameText.fontMaterial.SetFloat(ShaderUtilities.ID_GlowPower, x), 1f, 0.5f);
+
         yield return new WaitForSeconds(0.5f);
     }
 
     private IEnumerator StoppingHover()
     {
         DOTween.To(() => _quickOutline.OutlineWidth, x => _quickOutline.OutlineWidth = x, 0f, 0.5f);
+
+        _rightGameText.DOColor(new Color(1f, 1f, 1f, 0f), 0.5f);
+        DOTween.To(() => _rightGameText.fontMaterial.GetFloat(ShaderUtilities.ID_GlowPower), x => _rightGameText.fontMaterial.SetFloat(ShaderUtilities.ID_GlowPower, x), 0f, 0.5f);
 
         yield return new WaitForSeconds(0.5f);
 
