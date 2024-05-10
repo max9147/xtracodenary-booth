@@ -3,6 +3,7 @@ using UnityEngine;
 public class CursorController : MonoBehaviour
 {
     [SerializeField] private Camera _mainCamera;
+    [SerializeField] private RectTransform _canvas;
     [SerializeField] private RectTransform _cursor;
 
     private float _lastPositionX;
@@ -23,6 +24,6 @@ public class CursorController : MonoBehaviour
         _targetRotation = Mathf.Lerp(_targetRotation, 0f, 10f * Time.deltaTime);
         _cursor.eulerAngles = new Vector3(0f, 0f, _targetRotation);
 
-        _cursor.anchoredPosition = new Vector2((_mainCamera.ScreenToViewportPoint(Input.mousePosition).x - 0.5f) * Screen.width, (_mainCamera.ScreenToViewportPoint(Input.mousePosition).y - 0.5f) * Screen.height);
+        _cursor.anchoredPosition = new Vector2((_mainCamera.ScreenToViewportPoint(Input.mousePosition).x - 0.5f) * _canvas.sizeDelta.x, (_mainCamera.ScreenToViewportPoint(Input.mousePosition).y - 0.5f) * _canvas.sizeDelta.y);
     }
 }
