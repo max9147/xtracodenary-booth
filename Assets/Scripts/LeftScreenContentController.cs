@@ -163,7 +163,7 @@ public class LeftScreenContentController : MonoBehaviour
     private void ReadMessage(string _messageText)
     {
         _speechConfig = SpeechConfig.FromSubscription("0e35198c03b24ffbad54471e194d28b0", "uaenorth");
-        _speechConfig.SpeechSynthesisVoiceName = "en-US-JennyNeural";
+        _speechConfig.SpeechSynthesisVoiceName = "en-US-BrandonNeural";
         _synthesizer = new SpeechSynthesizer(_speechConfig, null);
         _speechConfig.SetSpeechSynthesisOutputFormat(SpeechSynthesisOutputFormat.Raw24Khz16BitMonoPcm);
 
