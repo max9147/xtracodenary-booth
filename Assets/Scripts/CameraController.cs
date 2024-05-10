@@ -22,6 +22,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private Image[] _navigationButtons;
     [SerializeField] private ParticleSystem[] _fireworks;
     [SerializeField] private RectTransform _navigationBar;
+    [SerializeField] private RectTransform _homeButton;
     [SerializeField] private TextMeshProUGUI[] _navigationTexts;
     [SerializeField] private TextMeshProUGUI _welcomeText;
     [SerializeField] private Transform _logo;
@@ -43,6 +44,8 @@ public class CameraController : MonoBehaviour
         _playingIntro = true;
         _selectedArea = -1;
         _hoveredArea = -1;
+
+        _homeButton.anchoredPosition = new Vector2(170f, -90f);
 
         StartCoroutine(PlayIntro());
     }
@@ -201,6 +204,8 @@ public class CameraController : MonoBehaviour
 
         StoppedHover?.Invoke(_hoveredArea);
         _hoveredArea = -1;
+
+        _homeButton.DOAnchorPos(new Vector2(170f, 90f), 0.5f);
     }
 
     private void PlaySecret()
@@ -225,6 +230,8 @@ public class CameraController : MonoBehaviour
 
     private IEnumerator UnselectingArea(int _reselectID = -1)
     {
+        _homeButton.DOAnchorPos(new Vector2(170f, -90f), 0.5f);
+
         if (_selectedArea == 1 || _selectedArea == 2)
         {
             DOTween.To(() => _cameraOutside.GetCinemachineComponent<CinemachineOrbitalTransposer>().m_XAxis.Value, x => _cameraOutside.GetCinemachineComponent<CinemachineOrbitalTransposer>().m_XAxis.Value = x, 0f, 2f).SetEase(Ease.InOutSine);
@@ -245,17 +252,13 @@ public class CameraController : MonoBehaviour
 
         UnselectedArea?.Invoke(_selectedArea);
 
-        yield return new WaitForSeconds(1f);
+        if (_selectedArea != 1 && _selectedArea != 2)
+            yield return new WaitForSeconds(1f);
 
         _selectedArea = -1;
 
         if (_reselectID != -1)
-        {
-            if (_reselectID == 1 || _reselectID == 2)
-                yield return new WaitForSeconds(1f);
-
             SelectingArea(_reselectID);
-        }
     }
 
     private IEnumerator PlayIntro()
